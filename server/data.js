@@ -1,15 +1,12 @@
-import { promises as fs } from 'fs';
-
 import { GoogleSpreadsheet } from 'google-spreadsheet';
-import parseCsv from 'csv-parse/lib/sync';
 
 const helpFields = {
-    services: {
+    labor: {
         three_dee_printing: '3D printing',
         assembly: 'Assembly',
         transport: 'Transport',
     },
-    acquisitions: {
+    materials: {
         poly_sheets: 'poly sheets',
         elastic_bands: 'elastic bands',
         pla_filament: 'PLA filament',

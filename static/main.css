@@ -1,12 +1,82 @@
+:root {
+    --labor: #388e3c;
+    --tools: #0277bd;
+    --materials: #ff9800;
+}
+
+body {
+    color: black;
+}
+
+.map {
+    height: 100vh;
+    position: relative;
+}
+
+.marker-details {
+    position: absolute;
+    margin-top: auto;
+    margin: auto 0;
+    left: 20px;
+    top: 20px;
+    height: calc(100% - 40px);
+    width: 20%;
+    padding: 10px;
+    max-width: 400px;
+    background: white;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.marker-details h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 .marker {
+    position: relative;
+    width: 46px;
+    height: 46px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: white;
-    border-radius: 20px;
+}
+
+.marker .zip {
+    z-index: 1;
     font-weight: bold;
-    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.marker .indicator {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    stroke-linecap: round;
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
+}
+
+.marker .indicator circle {
+    fill: white;
+}
+
+.marker .indicator path {
+    stroke: black;
+    stroke-width: 3px;
+    fill: none;
+}
+
+.marker .indicator path.materials {
+    stroke: var(--materials);
+}
+
+.marker .indicator path.labor {
+    stroke: var(--labor);
+}
+
+.marker .indicator path.tools {
+    stroke: var(--tools);
 }

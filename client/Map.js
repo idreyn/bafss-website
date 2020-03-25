@@ -4,6 +4,7 @@ import createMapboxClient from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { MAPBOX_ACCESS_TOKEN } from '../config';
 import { createMarker } from './Marker';
+import MarkerDetails from './MarkerDetails';
 
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
@@ -25,21 +26,6 @@ const getLngLatForZip = zip => {
         });
 };
 
-const addMarkerToMap = (map, zip, entries) => {
-    console.log('adding to map', zip, entries);
-    const popup = new mapboxgl.Popup().setHTML('<div>Hi</div>');
-    const markerPromise = new Promise(resolve => {
-        getLngLatForZip(zip).then(lngLat => {
-            const marker = new mapboxgl.Marker(createMarker({ zip, entries }))
-                .setLngLat(lngLat)
-                .setPopup(popup)
-                .addTo(map);
-            return resolve(marker);
-        });
-    });
-    return { remove: () => markerPromise.then(marker => marker.remove()) };
-};
-
 const groupResponsesByZip = responses => {
     const res = {};
     responses.forEach(response => {
@@ -47,12 +33,12 @@ const groupResponsesByZip = responses => {
         if (!res[zip]) {
             res[zip] = [];
         }
-        res[zip].push(res);
+        res[zip].push(response);
     });
     return res;
 };
 
-const setupMap = (domElement, initialPosition) => {
+const setupMap = ({ domElement, initialPosition, onClickBackground }) => {
     const { center, zoom } = initialPosition;
 
     const map = new mapboxgl.Map({
@@ -60,6 +46,16 @@ const setupMap = (domElement, initialPosition) => {
         container: domElement,
         center: center,
         zoom: zoom,
+    });
+
+    map.on('click', evt => {
+        const {
+            originalEvent: { target },
+        } = evt;
+        // TODO(ian): ahhhhhh!
+        if (target.tagName && target.tagName.toLowerCase() === 'canvas') {
+            onClickBackground();
+        }
     });
 
     map.on('load', () => {
@@ -79,8 +75,6 @@ const setupMap = (domElement, initialPosition) => {
             'source-layer': 'zip5_topo_color-2bf335',
         });
     });
-
-    window.__the_map__ = map;
     return map;
 };
 
@@ -96,51 +90,83 @@ const useResponses = () => {
     return responses && groupResponsesByZip(responses);
 };
 
-const useMapbox = ({ initialPosition }, responses) => {
+const addMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
+    const markerPromise = new Promise(resolve => {
+        getLngLatForZip(zip).then(lngLat => {
+            const marker = new mapboxgl.Marker(
+                createMarker({ zip, entries, onSelectMarker })
+            )
+                .setLngLat(lngLat)
+                .addTo(map);
+            return resolve(marker);
+        });
+    });
+    return { remove: () => markerPromise.then(marker => marker.remove()) };
+};
+
+const useMapbox = ({ initialPosition, responses, onSelectMarker }) => {
     const [domElement, setDomElement] = useState(null);
     const mapRef = useRef(null);
     const responseMarkerHandlesRef = useRef([]);
 
-    const addResponsesToMap = (map, nextResponses) => {
-        const { current: responseMarkerHandles } = responseMarkerHandlesRef;
-        responseMarkerHandles.forEach(handle => handle.remove());
-        const nextResponseMarkerHandles = [];
-        Object.entries(nextResponses).forEach(([zip, entries]) =>
-            nextResponseMarkerHandles.push(addMarkerToMap(map, zip, entries))
-        );
-        responseMarkerHandlesRef.current = nextResponseMarkerHandles;
-    };
+    useEffect(() => {
+        return () => {
+            if (mapRef.current) {
+                mapRef.current.remove();
+            }
+        };
+    }, []);
 
     useEffect(() => {
+        const addResponsesToMap = (map, nextResponses) => {
+            const { current: responseMarkerHandles } = responseMarkerHandlesRef;
+            responseMarkerHandles.forEach(handle => handle.remove());
+            const nextResponseMarkerHandles = [];
+            Object.entries(nextResponses).forEach(([zip, entries]) =>
+                nextResponseMarkerHandles.push(
+                    addMarkerToMap(map, { zip, entries, onSelectMarker })
+                )
+            );
+            responseMarkerHandlesRef.current = nextResponseMarkerHandles;
+        };
+
         if (domElement && responses) {
             if (!mapRef.current) {
-                const map = setupMap(domElement, initialPosition);
+                const map = setupMap({
+                    domElement,
+                    initialPosition,
+                    onClickBackground: () => onSelectMarker(null),
+                });
+                addResponsesToMap(map, responses);
                 mapRef.current = map;
-                console.log('setup');
             }
-            addResponsesToMap(mapRef.current, responses);
-            return () => mapRef.current.remove();
         }
-        return () => {};
-    }, [domElement, initialPosition, responses]);
+    }, [domElement, initialPosition, responses, onSelectMarker]);
 
     return { setMapRef: setDomElement };
 };
 
-const bayArea = {
-    initialPosition: {
-        center: [-122, 37.7],
-        zoom: 9.25,
-    },
+const bayAreaPosition = {
+    center: [-122, 37.7],
+    zoom: 9.25,
 };
 
 const Map = () => {
+    const [openMarker, setOpenMarker] = useState(null);
     const responses = useResponses();
-    const { setMapRef } = useMapbox(bayArea, responses);
 
-    console.log(responses);
+    const { setMapRef } = useMapbox({
+        initialPosition: bayAreaPosition,
+        responses,
+        onSelectMarker: setOpenMarker,
+    });
 
-    return <div className="absolute top right left bottom" ref={setMapRef} />;
+    return (
+        <div className="map">
+            {openMarker && <MarkerDetails marker={openMarker} />}
+            <div className="absolute top right left bottom" ref={setMapRef} />
+        </div>
+    );
 };
 
 export default Map;
