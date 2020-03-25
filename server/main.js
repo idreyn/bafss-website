@@ -2,6 +2,12 @@ import path from 'path';
 
 import express from 'express';
 
+try {
+    require('./secrets.js');
+} catch (_) {
+    // Presumably we're in production where this file doesn't exist
+}
+
 import { loadAndCollateResponses } from './data';
 
 const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
@@ -15,10 +21,3 @@ app.get('/api/responses', (_, res) => {
 });
 
 app.listen(process.env.PORT || 2039);
-
-const oof = async () => {
-    const data = await loadAndCollateResponses();
-    console.log(data);
-};
-
-oof();

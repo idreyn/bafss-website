@@ -1,5 +1,6 @@
 import { promises as fs } from 'fs';
 
+import { GoogleSpreadsheet } from 'google-spreadsheet';
 import parseCsv from 'csv-parse/lib/sync';
 
 const helpFields = {
@@ -21,6 +22,18 @@ const helpFields = {
         safety_mask: 'safety masks for mask assembly',
     },
     money: 'Money',
+};
+
+const getSpreadsheetRows = async () => {
+    const doc = new GoogleSpreadsheet(process.env.RESPONSES_SHEET_ID);
+    await doc.useServiceAccountAuth({
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY,
+    });
+    await doc.loadInfo();
+    console.log(doc.title);
+    const [sheet] = doc.sheetsByIndex;
+    return sheet.getRows();
 };
 
 const matchCaseInsensitive = (needle, haystack) =>
@@ -91,10 +104,10 @@ const createEntryFromRow = row => {
                 const { field, deriveFrom } = matcher;
                 result[field] = deriveFrom(value);
             } else {
-                result[matcher] = value;
+                result[matcher] = value && value.trim();
             }
         } else {
-            console.warn(`Discarding unmatched sheet header ${header}`);
+            //  console.warn(`Discarding unmatched sheet header ${header}`);
         }
     });
     return result;
@@ -110,13 +123,14 @@ const sanitizeEntryForPublic = entry => {
     return res;
 };
 
-const loadResponsesIntoEntries = async () => {
-    const data = await fs.readFile(__dirname + '/../static/testData/test.csv');
-    return parseCsv(data, { columns: true }).map(createEntryFromRow);
-};
+// const loadTestResponsesIntoEntries = async () => {
+//     const data = await fs.readFile(__dirname + '/../static/testData/test.csv');
+//     return parseCsv(data, { columns: true }).map(createEntryFromRow);
+// };
 
 export const loadAndCollateResponses = async (publicView = true) => {
-    const entries = await loadResponsesIntoEntries();
+    const rows = await getSpreadsheetRows();
+    const entries = rows.map(createEntryFromRow);
     if (publicView) {
         return entries.map(sanitizeEntryForPublic);
     }
