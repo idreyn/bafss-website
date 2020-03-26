@@ -12,14 +12,23 @@ body {
     font-family: sans-serif;
 }
 
+p {
+    line-height: 1.2em;
+}
+
 main {
-    &.map-expanded > :not(.map) {
-        display: none;
+    .header {
+        text-align: center;
     }
+
     .centered-column {
         width: 700px;
         max-width: 96%;
         margin: 0 auto;
+    }
+
+    &.map-expanded > :not(.map) {
+        display: none;
     }
 }
 
@@ -75,32 +84,27 @@ main {
     box-shadow: $base-shadow;
     z-index: 3;
 
-    .top-row {
+    .close-button {
+        position: absolute;
+        cursor: pointer;
+        top: 10px;
+        right: 10px;
         display: flex;
-        margin-bottom: 10px;
-        h1 {
-            font-size: 1.5em;
-            font-weight: bold;
-            flex-grow: 1;
+        justify-content: center;
+        width: 25px;
+        height: 25px;
+        font-size: 20px;
+        line-height: 22px;
+        &:hover {
+            border-radius: 4px;
+            background: #eee;
         }
-        .close-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            width: 30px;
-            height: 30px;
-            font-size: 1.5em;
-            padding: 5px;
-            &::after {
-                content: '\00D7';
-            }
-            &:hover {
-                border-radius: 4px;
-                background: #eee;
-            }
-        }
+    }
+
+    h1 {
+        font-size: 1.5em;
+        font-weight: bold;
+        flex-grow: 1;
     }
 
     .tab-selector {

@@ -109,18 +109,44 @@ const addMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
     return { remove: () => markerPromise.then(marker => marker.remove()) };
 };
 
-const useMapbox = ({ initialPosition, responses, onSelectMarker }) => {
+const useMapbox = ({
+    initialPosition,
+    responses,
+    onSelectMarker,
+    expanded,
+}) => {
     const [domElement, setDomElement] = useState(null);
-    const mapRef = useRef(null);
+    const [map, setMap] = useState(null);
     const responseMarkerHandlesRef = useRef([]);
 
     useEffect(() => {
         return () => {
-            if (mapRef.current) {
-                mapRef.current.remove();
+            if (map) {
+                map.remove();
             }
         };
-    }, []);
+    }, [map]);
+
+    useEffect(() => {
+        if (map) {
+            const enableZoom = () => map.scrollZoom.enable();
+            const disableZoom = () => map.scrollZoom.disable();
+            if (expanded) {
+                enableZoom();
+            } else {
+                disableZoom();
+                const target = map.getCanvas();
+                console.log(map, target);
+                target.addEventListener('focus', enableZoom);
+                target.addEventListener('blur', disableZoom);
+                return () => {
+                    target.removeEventListener('focus', enableZoom);
+                    target.removeEventListener('blur', disableZoom);
+                };
+            }
+        }
+        return () => {};
+    }, [map, expanded]);
 
     useEffect(() => {
         const addResponsesToMap = (map, nextResponses) => {
@@ -136,17 +162,17 @@ const useMapbox = ({ initialPosition, responses, onSelectMarker }) => {
         };
 
         if (domElement && responses) {
-            if (!mapRef.current) {
+            if (!map) {
                 const map = setupMap({
                     domElement,
                     initialPosition,
                     onClickBackground: () => onSelectMarker(null),
                 });
                 addResponsesToMap(map, responses);
-                mapRef.current = map;
+                setMap(map);
             }
         }
-    }, [domElement, initialPosition, responses, onSelectMarker]);
+    }, [domElement, initialPosition, responses, onSelectMarker, map]);
 
     return { setMapRef: setDomElement };
 };
@@ -162,8 +188,9 @@ const Map = props => {
     const responses = useResponses();
 
     const { setMapRef } = useMapbox({
-        initialPosition: bayAreaPosition,
         responses,
+        expanded,
+        initialPosition: bayAreaPosition,
         onSelectMarker: setOpenMarker,
     });
 

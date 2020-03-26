@@ -127,7 +127,9 @@ const DetailsPane = props => {
         <div className="details-pane">
             <div className="top-row">
                 <h1>Responses from {zip}</h1>
-                <div className="close-button" onClick={onClose} />
+                <button className="close-button" onClick={onClose}>
+                    &times;
+                </button>
             </div>
             <div className="tab-selector">
                 <button
