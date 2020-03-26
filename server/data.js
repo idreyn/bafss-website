@@ -1,5 +1,7 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 
+import { cache } from './util';
+
 const helpFields = {
     labor: {
         three_dee_printing: '3D printing',
@@ -23,7 +25,7 @@ const helpFields = {
     },
 };
 
-const getSpreadsheetRows = async () => {
+const getSpreadsheetRows = cache(async () => {
     const doc = new GoogleSpreadsheet(process.env.RESPONSES_SHEET_ID);
     await doc.useServiceAccountAuth({
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -32,7 +34,7 @@ const getSpreadsheetRows = async () => {
     await doc.loadInfo();
     const [sheet] = doc.sheetsByIndex;
     return sheet.getRows();
-};
+}, 60);
 
 const matchCaseInsensitive = (needle, haystack) =>
     haystack.toLowerCase().includes(needle.toLowerCase());
