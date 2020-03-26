@@ -175,7 +175,7 @@ const Map = props => {
                     onClose={() => setOpenMarker(null)}
                 />
             )}
-            <div className="absolute top right left bottom" ref={setMapRef} />
+            <div className="mapbox-container" ref={setMapRef} />
         </div>
     );
 };

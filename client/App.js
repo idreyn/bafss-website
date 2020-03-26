@@ -9,8 +9,10 @@ const App = () => {
     const [isMapExpanded, setMapExpanded] = useState(expandmap);
     return (
         <main className={classNames(isMapExpanded && 'map-expanded')}>
-            <div className="header">
-                <h1>Bay Area Face Shield Resupply</h1>
+            <div className="centered-column">
+                <div className="header">
+                    <h1>Bay Area Face Shield Resupply</h1>
+                </div>
             </div>
             <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
         </main>
