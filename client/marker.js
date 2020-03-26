@@ -49,8 +49,8 @@ const Marker = props => {
                     markerRadius,
                     markerRadius,
                     markerRadius - 2,
-                    10 + offsetIndex * 120,
-                    -10 + (offsetIndex + 1) * 120
+                    45 + (10 + offsetIndex * 90),
+                    45 + (-10 + (offsetIndex + 1) * 90)
                 )}
             />
         );
@@ -69,6 +69,7 @@ const Marker = props => {
                 {renderArc(0, 'materials')}
                 {renderArc(1, 'tools')}
                 {renderArc(2, 'labor')}
+                {renderArc(3, 'funding')}
             </svg>
             <div className="zip">{zip}</div>
         </button>

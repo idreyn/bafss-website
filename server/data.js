@@ -15,10 +15,12 @@ const helpFields = {
     },
     tools: {
         hole_punch: 'hole punch',
-        razor_blade_etc: 'razor_blade_etc',
+        razor_blade_etc: 'razor blade',
         safety_mask: 'safety masks for mask assembly',
     },
-    money: 'Money',
+    funding: {
+        money: 'Money',
+    },
 };
 
 const getSpreadsheetRows = async () => {
@@ -67,7 +69,7 @@ const normalizeOffers = (
 };
 
 const rowFieldMatchers = {
-    'Your Name': 'fullName',
+    'Your Name': 'name',
     'Email address': 'email',
     Organization: 'organization',
     'ZIP Code': 'zip',
@@ -125,11 +127,12 @@ const sanitizeEntryForPublic = entry => {
 //     return parseCsv(data, { columns: true }).map(createEntryFromRow);
 // };
 
-export const loadAndCollateResponses = async (publicView = true) => {
+export const loadAndCollateResponses = async (publicView = false) => {
     const rows = await getSpreadsheetRows();
     const entries = rows.map(createEntryFromRow);
     if (publicView) {
         return entries.map(sanitizeEntryForPublic);
     }
+    console.log(entries);
     return entries;
 };

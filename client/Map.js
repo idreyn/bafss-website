@@ -4,7 +4,7 @@ import createMapboxClient from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { MAPBOX_ACCESS_TOKEN } from '../config';
 import { createMarker } from './Marker';
-import MarkerDetails from './MarkerDetails';
+import DetailsPane from './DetailsPane';
 
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
@@ -147,8 +147,8 @@ const useMapbox = ({ initialPosition, responses, onSelectMarker }) => {
 };
 
 const bayAreaPosition = {
-    center: [-122, 37.7],
-    zoom: 9.25,
+    center: [-122, 37.6],
+    zoom: 8.5,
 };
 
 const Map = () => {
@@ -163,7 +163,12 @@ const Map = () => {
 
     return (
         <div className="map">
-            {openMarker && <MarkerDetails marker={openMarker} />}
+            {openMarker && (
+                <DetailsPane
+                    marker={openMarker}
+                    onClose={() => setOpenMarker(null)}
+                />
+            )}
             <div className="absolute top right left bottom" ref={setMapRef} />
         </div>
     );

@@ -1,0 +1,220 @@
+$base-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+$labor: #388e3c;
+$tools: #0277bd;
+$materials: #ff9800;
+$funding: #e64a19;
+
+$dark-accent: black;
+
+body {
+    color: black;
+}
+
+.map {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+@mixin tinted-overview-section($color) {
+    .head {
+        background-color: $color;
+    }
+    .body {
+        background-color: mix(white, $color, 90%);
+    }
+}
+
+.details-pane {
+    position: absolute;
+    margin-top: auto;
+    margin: auto 0;
+    display: flex;
+    flex-direction: column;
+    left: 20px;
+    top: 20px;
+    height: calc(100% - 40px);
+    width: 20%;
+    padding: 10px;
+    max-width: 500px;
+    min-width: 350px;
+    background: white;
+    box-shadow: $base-shadow;
+    z-index: 3;
+
+    .top-row {
+        display: flex;
+        margin-bottom: 10px;
+        h1 {
+            font-size: 1.5em;
+            font-weight: bold;
+            flex-grow: 1;
+        }
+        .close-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            font-size: 1.5em;
+            padding: 5px;
+            &::after {
+                content: '\00D7';
+            }
+            &:hover {
+                border-radius: 4px;
+                background: #eee;
+            }
+        }
+    }
+
+    .tab-selector {
+        display: flex;
+
+        button {
+            border-bottom: 3px solid transparent;
+            padding: 0;
+            &:not(:last-child) {
+                margin-right: 12px;
+            }
+            &.selected {
+                border-bottom: 3px solid $dark-accent;
+            }
+            &:not(.selected):hover {
+                border-bottom: 3px solid lighten($dark-accent, 50%);
+            }
+        }
+    }
+
+    .tab-pane {
+        overflow-y: scroll;
+    }
+
+    .overview-section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        .head,
+        .body {
+            padding: 10px;
+        }
+        .head {
+            color: white;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        .body {
+            ul {
+                list-style-type: square;
+                li {
+                    margin-left: 2em;
+                    text-transform: capitalize;
+                }
+            }
+        }
+        &.materials {
+            @include tinted-overview-section($materials);
+        }
+        &.labor {
+            @include tinted-overview-section($labor);
+        }
+        &.tools {
+            @include tinted-overview-section($tools);
+        }
+        &.funding {
+            @include tinted-overview-section($funding);
+        }
+    }
+
+    .response-section {
+        padding: 10px;
+        margin-top: 15px;
+        background: #eee;
+
+        .info {
+            .field {
+                margin-bottom: 5px;
+                .key {
+                    text-transform: capitalize;
+                }
+            }
+
+            :last-child {
+                margin-bottom: 15px;
+            }
+        }
+
+        .offer {
+            .key {
+                text-transform: capitalize;
+            }
+            padding: 10px;
+            color: white;
+            &.materials {
+                background-color: $materials;
+            }
+            &.labor {
+                background-color: $labor;
+            }
+            &.tools {
+                background-color: $tools;
+            }
+            &.funding {
+                background-color: $funding;
+            }
+        }
+    }
+}
+
+.marker {
+    position: relative;
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .zip {
+        z-index: 1;
+        font-weight: bold;
+    }
+
+    .indicator {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        stroke-linecap: round;
+        filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
+
+        circle {
+            fill: white;
+        }
+
+        path {
+            stroke: black;
+            stroke-width: 3px;
+            fill: none;
+
+            &.materials {
+                stroke: $materials;
+            }
+
+            &.labor {
+                stroke: $labor;
+            }
+
+            &.tools {
+                stroke: $tools;
+            }
+
+            &.funding {
+                stroke: $funding;
+            }
+        }
+    }
+}
