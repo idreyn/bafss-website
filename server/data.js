@@ -30,7 +30,6 @@ const getSpreadsheetRows = async () => {
         private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
     await doc.loadInfo();
-    console.log(doc.title);
     const [sheet] = doc.sheetsByIndex;
     return sheet.getRows();
 };
@@ -133,6 +132,5 @@ export const loadAndCollateResponses = async (publicView = false) => {
     if (publicView) {
         return entries.map(sanitizeEntryForPublic);
     }
-    console.log(entries);
     return entries;
 };
