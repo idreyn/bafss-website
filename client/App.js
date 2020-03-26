@@ -22,7 +22,7 @@ const App = () => {
             <div className="centered-column">
                 <h3>Contributing Effort</h3>
                 <p>
-                    The map above shows (by ZIP code) where people have signed up to contribute 3d printing resources, materials, and labor.
+                    The interactive map above shows (by ZIP code) where people have signed up to contribute 3d printing resources, materials, and labor.
                 </p>
                 <p>
                     <strong><a href="https://forms.gle/pDxaSF5idGm15di98">CLICK HERE TO HELP</a></strong> (Your personal information will remain anonymous)
@@ -50,8 +50,43 @@ const App = () => {
                     <br></br>
                     A face shield is not a mask that fits snugly over the nose and mouth. It is a clear window that protects the whole face from droplets and sprays that can carry infection.
                 </p>
-
-
+                <p>Is a face-shield shortage really a problem here?
+                    <br></br>
+                    Yes. Personal protective equipment (PPE) is in short supply, and there is no clear resupply chain in place currently.
+                    <br></br>
+                    https://megaphone.link/SFO2957716016
+                    <br></br>
+                    khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/
+                </p>
+                <p>Where are these face shields coming from?
+                    <br></br>
+                    They are a 3d-printed design made and downloadable from <a href="https://www.budmen.com">Budmen Industries</a>.
+                </p>
+                <p>Is anyone else using them?
+                    <br></br>
+                    Yes, the idea was inspired by Massachusetts General Hospital and Partners hospitals in the Boston area putting out a similar call with the same design.
+                    <br></br>
+                    https://www.nbcboston.com/.../mgh-desperately.../2094292/
+                </p>
+                <p>Do local hospitals actually want DIY help?
+                    <br></br>
+                    Yes, the medical community has asked for this exact kind of work.
+                    <br></br>
+                    https://twitter.com/vmcfoundation/status/1240707396147638272
+                </p>
+                <p> Who is organizing this?
+                    <br></br>
+                    I’m a <a href="https://www.ski.org/users/santani-teng">scientist in San Francisco</a> trying to do my day job and a useful job at the same time.
+                    <br></br>
+                </p>
+                <p>Is this one of those horrifying scams to prey on people's helpful nature? Is it dangerous?
+                    <br></br>
+                    No. You can help without donating money or breaking social distancing guidelines. We wipe everything down and deliver materials with no-contact methods.
+                </p>
+                <p>If I chip in, what’s the money going toward?
+                    <br></br>
+                    Parts, printing costs, deliveries.
+                </p>
             </div>
         </main>
     );
