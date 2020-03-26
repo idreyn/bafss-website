@@ -2,7 +2,7 @@ import path from 'path';
 
 import express from 'express';
 
-import { requireHttps, hasAdminAccess } from './util';
+import { hasAdminAccess } from './util';
 
 try {
     require('./secrets.js');
@@ -16,7 +16,7 @@ const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
 const app = express();
 
 app.use(express.static(staticRoot));
-app.use(requireHttps);
+// app.use(requireHttps);
 
 app.get('/api/responses', (req, res, next) => {
     const {
