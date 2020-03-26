@@ -9,7 +9,8 @@
     "serve-dev": "nodemon -r --watch server esm server/main.js",
     "build-dev": "webpack --watch --mode development",
     "start": "concurrently npm:build-dev npm:serve-dev",
-    "start-prod": "webpack --mode production && npm run serve-prod"
+    "postinstall": "webpack --mode production",
+    "start-prod": "npm run serve-prod"
   },
   "author": "Ian Reynolds",
   "license": "ISC",
