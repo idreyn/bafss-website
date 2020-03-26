@@ -67,7 +67,6 @@ const DetailsPane = props => {
             'phone',
             'organization',
             'comments',
-            'zip',
         ];
         return entries.map((entry, index) => {
             const { offers } = entry;
