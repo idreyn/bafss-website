@@ -4,12 +4,17 @@
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "serve-prod": "node -r esm server/main.js",
     "serve-dev": "nodemon -r --watch server esm server/main.js",
     "build-dev": "webpack --watch --mode development",
-    "start": "concurrently npm:build-dev npm:serve-dev"
+    "start": "concurrently npm:build-dev npm:serve-dev",
+    "start-prod": "webpack --mode production && npm run serve-prod"
   },
   "author": "Ian Reynolds",
   "license": "ISC",
+  "engines": {
+    "node": "12.x"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
