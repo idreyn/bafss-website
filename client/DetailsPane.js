@@ -37,11 +37,11 @@ const DetailsPane = props => {
         }
         return (
             <div className={classNames('overview-section', type)}>
-                <div className="head">{label(type)}</div>
+                <div className="head">{label(type, true)}</div>
                 <div className="body">
                     <ul>
                         {items.map(item => (
-                            <li key={item}>{label(item)}</li>
+                            <li key={item}>{label(item, true)}</li>
                         ))}
                     </ul>
                 </div>
