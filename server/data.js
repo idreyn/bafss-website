@@ -126,10 +126,10 @@ const sanitizeEntryForPublic = entry => {
 //     return parseCsv(data, { columns: true }).map(createEntryFromRow);
 // };
 
-export const loadAndCollateResponses = async (publicView = false) => {
+export const loadAndCollateResponses = async showPrivateView => {
     const rows = await getSpreadsheetRows();
     const entries = rows.map(createEntryFromRow);
-    if (publicView) {
+    if (!showPrivateView) {
         return entries.map(sanitizeEntryForPublic);
     }
     return entries;

@@ -3,6 +3,8 @@ import mapboxgl from 'mapbox-gl';
 import createMapboxClient from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { MAPBOX_ACCESS_TOKEN } from '../config';
+
+import { useQueryParams } from './util';
 import { createMarker } from './Marker';
 import DetailsPane from './DetailsPane';
 
@@ -80,11 +82,13 @@ const setupMap = ({ domElement, initialPosition, onClickBackground }) => {
 
 const useResponses = () => {
     const [responses, setResponses] = useState(null);
+    const { access } = useQueryParams();
 
     useEffect(() => {
-        fetch('/api/responses')
+        fetch(`/api/responses?access=${access}`)
             .then(res => res.json())
             .then(({ responses }) => setResponses(responses));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return responses && groupResponsesByZip(responses);
