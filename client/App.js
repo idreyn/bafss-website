@@ -62,7 +62,7 @@ const App = () => {
                     <br></br>
                     They are a 3d-printed design made and downloadable from <a href="https://www.budmen.com">Budmen Industries</a>.
                 </p>
-                <p>Is anyone else using them?
+                <p><strong>Is anyone else using them?</strong>
                     <br></br>
                     Yes, the idea was inspired by <a href="https://www.nbcboston.com/news/coronavirus/mgh-desperately-needs-supplies-president-says/2094292/">Massachusetts General Hospital and Partners hospitals in the Boston area putting out a similar call</a> with the same design.
                 </p>
