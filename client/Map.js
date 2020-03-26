@@ -136,7 +136,6 @@ const useMapbox = ({
             } else {
                 disableZoom();
                 const target = map.getCanvas();
-                console.log(map, target);
                 target.addEventListener('focus', enableZoom);
                 target.addEventListener('blur', disableZoom);
                 return () => {
