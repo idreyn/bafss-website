@@ -16,7 +16,7 @@ const App = () => {
                 <p>
                     Health care workers around the Bay Area are low on protective equipment as they fight the coronavirus pandemic. Help us produce and distribute 3d-printed face shields to keep them safe!
                 </p>
-                <h2>Where help is coming from</h2>
+                <h2>Where help is coming from -- this is YOU</h2>
             </div>
             <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
             <div className="centered-column">
@@ -50,40 +50,38 @@ const App = () => {
                     <br></br>
                     A face shield is not a mask that fits snugly over the nose and mouth. It is a clear window that protects the whole face from droplets and sprays that can carry infection.
                 </p>
-                <p>Is a face-shield shortage really a problem here?
+                <p><strong>Is a face-shield shortage really a problem here?</strong>
                     <br></br>
                     Yes. Personal protective equipment (PPE) is in short supply, and there is no clear resupply chain in place currently.
                     <br></br>
-                    https://megaphone.link/SFO2957716016
+                    <a href="https://megaphone.link/SFO2957716016">SF Chronicle on equipment shortages</a>
                     <br></br>
-                    khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/
+                    <a href="khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/">Kaiser Health News: From the front lines of the COVID-19 battle</a>
                 </p>
-                <p>Where are these face shields coming from?
+                <p><strong>Where are these face shields coming from?</strong>
                     <br></br>
                     They are a 3d-printed design made and downloadable from <a href="https://www.budmen.com">Budmen Industries</a>.
                 </p>
                 <p>Is anyone else using them?
                     <br></br>
-                    Yes, the idea was inspired by Massachusetts General Hospital and Partners hospitals in the Boston area putting out a similar call with the same design.
-                    <br></br>
-                    https://www.nbcboston.com/.../mgh-desperately.../2094292/
+                    Yes, the idea was inspired by <a href="https://www.nbcboston.com/news/coronavirus/mgh-desperately-needs-supplies-president-says/2094292/">Massachusetts General Hospital and Partners hospitals in the Boston area putting out a similar call</a> with the same design.
                 </p>
-                <p>Do local hospitals actually want DIY help?
+                <p><strong>Do local hospitals actually want DIY help?</strong>
                     <br></br>
-                    Yes, the medical community has asked for this exact kind of work.
-                    <br></br>
-                    https://twitter.com/vmcfoundation/status/1240707396147638272
+                    Yes, the medical community has <a href="
+                    https://twitter.com/vmcfoundation/status/1240707396147638272">asked for this exact kind of work</a>.
                 </p>
-                <p> Who is organizing this?
+                <p> <strong>Who is organizing this?</strong>
                     <br></br>
                     I’m a <a href="https://www.ski.org/users/santani-teng">scientist in San Francisco</a> trying to do my day job and a useful job at the same time.
                     <br></br>
+                    But the helpers on the map -- regular Bay Area people -- are the real contributors.
                 </p>
-                <p>Is this one of those horrifying scams to prey on people's helpful nature? Is it dangerous?
+                <p><strong>Is this one of those horrifying scams to prey on people's helpful nature? Is it dangerous?</strong>
                     <br></br>
                     No. You can help without donating money or breaking social distancing guidelines. We wipe everything down and deliver materials with no-contact methods.
                 </p>
-                <p>If I chip in, what’s the money going toward?
+                <p><strong>If I chip in, what’s the money going toward?</strong>
                     <br></br>
                     Parts, printing costs, deliveries.
                 </p>
