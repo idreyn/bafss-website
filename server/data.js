@@ -37,7 +37,7 @@ const getSpreadsheetRows = cache(async () => {
 }, 60);
 
 const matchCaseInsensitive = (needle, haystack) =>
-    haystack.toLowerCase().includes(needle.toLowerCase());
+    needle && haystack && haystack.toLowerCase().includes(needle.toLowerCase());
 
 const normalizeOffers = (
     offersFieldValue,
@@ -110,7 +110,10 @@ const createEntryFromRow = row => {
             //  console.warn(`Discarding unmatched sheet header ${header}`);
         }
     });
-    return result;
+    if (result.zip) {
+        return result;
+    }
+    return null;
 };
 
 const sanitizeEntryForPublic = entry => {
@@ -130,7 +133,7 @@ const sanitizeEntryForPublic = entry => {
 
 export const loadAndCollateResponses = async showPrivateView => {
     const rows = await getSpreadsheetRows();
-    const entries = rows.map(createEntryFromRow);
+    const entries = rows.map(createEntryFromRow).filter(x => x);
     if (!showPrivateView) {
         return entries.map(sanitizeEntryForPublic);
     }

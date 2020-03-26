@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classNames from 'classnames';
 import mapboxgl from 'mapbox-gl';
 import createMapboxClient from '@mapbox/mapbox-sdk/services/geocoding';
 
@@ -155,7 +156,8 @@ const bayAreaPosition = {
     zoom: 8.5,
 };
 
-const Map = () => {
+const Map = props => {
+    const { expanded } = props;
     const [openMarker, setOpenMarker] = useState(null);
     const responses = useResponses();
 
@@ -166,7 +168,7 @@ const Map = () => {
     });
 
     return (
-        <div className="map">
+        <div className={classNames('map', expanded && 'expanded')}>
             {openMarker && (
                 <DetailsPane
                     marker={openMarker}

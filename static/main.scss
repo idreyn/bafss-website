@@ -10,10 +10,23 @@ body {
     color: black;
 }
 
+main {
+    &.map-expanded > :not(.map) {
+        display: none;
+    }
+}
+
 .map {
-    height: 100vh;
+    height: 50vh;
+    min-height: 300px;
+    max-height: 600px;
     position: relative;
     overflow: hidden;
+    &.expanded {
+        max-height: unset;
+        min-height: unset;
+        height: 100vh;
+    }
 }
 
 @mixin tinted-overview-section($color) {
