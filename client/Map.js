@@ -178,7 +178,7 @@ const useMapbox = ({
 
 const bayAreaPosition = {
     center: [-122, 37.6],
-    zoom: 8.5,
+    zoom: 8.0,
 };
 
 const Map = props => {
