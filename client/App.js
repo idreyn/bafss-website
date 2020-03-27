@@ -7,7 +7,6 @@ import Photos from './Photos';
 
 import er1 from '../static/images/er-1.png';
 import er2 from '../static/images/er-2.png';
-import er3 from '../static/images/er-3.png';
 
 const App = () => {
     const { expandmap } = useQueryParams();
@@ -17,7 +16,7 @@ const App = () => {
             <div className="header">
                 <h1>Bay Area Face Shield Supply</h1>
             </div>
-            <Photos srcs={[er1, er2, er3]} />
+            <Photos srcs={[er1, er2]} />
             <p>
                 Health care workers around the Bay Area are low on protective
                 equipment as they fight the coronavirus pandemic. We are
