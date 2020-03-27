@@ -14,7 +14,7 @@ const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
 
 const getLngLatForZip = zip => {
     return mapboxClient
-        .forwardGeocode({ query: zip })
+        .forwardGeocode({ query: zip, countries: ['us'] })
         .send()
         .then(res => {
             if (
