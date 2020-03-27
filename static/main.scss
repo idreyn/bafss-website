@@ -17,6 +17,10 @@ p {
 }
 
 main {
+    width: 700px;
+    max-width: 96%;
+    margin: 0 auto;
+
     .header {
         text-align: center;
     }
@@ -28,12 +32,6 @@ main {
         img {
             height: 200px;
         }
-    }
-
-    .centered-column {
-        width: 700px;
-        max-width: 96%;
-        margin: 0 auto;
     }
 
     &.map-expanded > :not(.map) {
