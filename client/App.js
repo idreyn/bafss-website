@@ -3,6 +3,11 @@ import classNames from 'classnames';
 
 import Map from './Map';
 import { useQueryParams } from './util';
+import Photos from './Photos';
+
+import er1 from '../static/images/er-1.png';
+import er2 from '../static/images/er-2.png';
+import er3 from '../static/images/er-3.png';
 
 const App = () => {
     const { expandmap } = useQueryParams();
@@ -13,16 +18,15 @@ const App = () => {
                 <div className="header">
                     <h1>Bay Area Face Shield Supply</h1>
                 </div>
+                <Photos srcs={[er1, er2, er3]} />
                 <p>
                     Health care workers around the Bay Area are low on
                     protective equipment as they fight the coronavirus pandemic.
-                    Help us produce and distribute 3d-printed face shields to
-                    keep them safe!
+                    We are producing and distributing 3D-printed face shields
+                    like the ones shown here, and we need your help.
                 </p>
-                <h2>Where help is coming from -- this is YOU</h2>
-            </div>
-            <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
-            <div className="centered-column">
+                <h2>Where help is coming from — this is YOU</h2>
+                <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
                 <h3>Contributing Effort</h3>
                 <p>
                     The interactive map above shows (by ZIP code) where people
