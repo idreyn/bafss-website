@@ -9,12 +9,12 @@ export const requireHttps = (req, res, next) => {
 export const hasAdminAccess = accessCode =>
     accessCode === process.env.ADMIN_ACCESS_CODE;
 
-export const cache = (fn, timeoutSeconds) => {
+export const cache = (fn, lifetimeSeconds) => {
     let lastValue = null;
     let lastCalled = null;
     return async () => {
         const now = Date.now();
-        if (!lastValue || now - lastCalled > timeoutSeconds * 1000) {
+        if (!lastValue || now - lastCalled > lifetimeSeconds * 1000) {
             lastValue = await fn();
             lastCalled = now;
         }

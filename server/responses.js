@@ -1,6 +1,4 @@
-import { GoogleSpreadsheet } from 'google-spreadsheet';
-
-import { cache } from './util';
+import { createGoogleSheetGetter } from './sheets';
 
 const helpFields = {
     labor: {
@@ -25,16 +23,9 @@ const helpFields = {
     },
 };
 
-const getSpreadsheetRows = cache(async () => {
-    const doc = new GoogleSpreadsheet(process.env.RESPONSES_SHEET_ID);
-    await doc.useServiceAccountAuth({
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY,
-    });
-    await doc.loadInfo();
-    const [sheet] = doc.sheetsByIndex;
-    return sheet.getRows();
-}, 60);
+const getSpreadsheetRows = createGoogleSheetGetter(
+    () => process.env.RESPONSES_SHEET_ID
+);
 
 const matchCaseInsensitive = (needle, haystack) =>
     needle && haystack && haystack.toLowerCase().includes(needle.toLowerCase());
@@ -131,7 +122,7 @@ const sanitizeEntryForPublic = entry => {
 //     return parseCsv(data, { columns: true }).map(createEntryFromRow);
 // };
 
-export const loadAndCollateResponses = async showPrivateView => {
+export const getResponses = async showPrivateView => {
     const rows = await getSpreadsheetRows();
     const entries = rows.map(createEntryFromRow).filter(x => x);
     if (!showPrivateView) {

@@ -4,9 +4,17 @@ import classNames from 'classnames';
 import Map from './Map';
 import { useQueryParams } from './util';
 import Photos from './Photos';
+import { ResponseMarker } from './ResponseMarker';
+import { DropoffMarker } from './DropoffMarker';
 
 import er1 from '../static/images/er-1.png';
 import er2 from '../static/images/er-2.png';
+
+const dummyResponseMarker = (
+    <ResponseMarker zip="" entries={[]} onSelectMarker={() => {}} />
+);
+
+const dummyDropoffMarker = <DropoffMarker dropoff={{ totalDonations: 25 }} />;
 
 const App = () => {
     const { expandmap } = useQueryParams();
@@ -24,6 +32,22 @@ const App = () => {
                 shown here, and we need your help.
             </p>
             <h2>Where help is coming from — this is YOU</h2>
+            <div className="map-explainer">
+                This map (click to zoom and interact) shows where:
+                <ul>
+                    <li>
+                        {dummyResponseMarker} volunteers are donating their{' '}
+                        <span className="labor">labor</span>,{' '}
+                        <span className="materials">materials</span>,{' '}
+                        <span className="tools">tools</span>, and{' '}
+                        <span className="funding">money</span>
+                    </li>
+                    <li>
+                        {dummyDropoffMarker} we have provided face shields to
+                        hospitals and medical facilities.
+                    </li>
+                </ul>
+            </div>
             <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
             <h3>Contributing Effort</h3>
             <p>
@@ -48,35 +72,33 @@ const App = () => {
                 enormously helpful!
             </p>
             <h4>PayPal</h4>
-            <p>
-                <form
-                    action="https://www.paypal.com/cgi-bin/webscr"
-                    method="post"
-                    target="_top"
-                >
-                    <input type="hidden" name="cmd" value="_s-xclick" />
-                    <input
-                        type="hidden"
-                        name="hosted_button_id"
-                        value="RYF9NU6X6BSL4"
-                    />
-                    <input
-                        type="image"
-                        src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
-                        border="0"
-                        name="submit"
-                        title="PayPal - The safer, easier way to pay online!"
-                        alt="Donate with PayPal button"
-                    />
-                    <img
-                        alt=""
-                        border="0"
-                        src="https://www.paypal.com/en_US/i/scr/pixel.gif"
-                        width="1"
-                        height="1"
-                    />
-                </form>
-            </p>
+            <form
+                action="https://www.paypal.com/cgi-bin/webscr"
+                method="post"
+                target="_top"
+            >
+                <input type="hidden" name="cmd" value="_s-xclick" />
+                <input
+                    type="hidden"
+                    name="hosted_button_id"
+                    value="RYF9NU6X6BSL4"
+                />
+                <input
+                    type="image"
+                    src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"
+                    border="0"
+                    name="submit"
+                    title="PayPal - The safer, easier way to pay online!"
+                    alt="Donate with PayPal button"
+                />
+                <img
+                    alt=""
+                    border="0"
+                    src="https://www.paypal.com/en_US/i/scr/pixel.gif"
+                    width="1"
+                    height="1"
+                />
+            </form>
             <h4>Venmo</h4>
             <p>@Santani-Teng</p>
 

@@ -6,6 +6,12 @@ $funding: #e64a19;
 
 $dark-accent: black;
 
+@mixin reset-button {
+    background: none;
+    border: none;
+    overflow: visible;
+}
+
 html,
 body {
     margin: 0;
@@ -29,8 +35,48 @@ main {
         display: flex;
         justify-content: center;
         margin: 0 auto;
+        max-width: 100vw;
+        overflow: hidden;
+
+        @media screen and (max-width: 360px) {
+            img:not(:first-child) {
+                display: none;
+            }
+        }
+
         img {
             height: 200px;
+        }
+    }
+
+    .map-explainer {
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .response-marker,
+        .dropoff-marker {
+            display: inline-flex;
+            vertical-align: middle;
+            transform: scale(0.7);
+        }
+        .response-marker {
+            pointer-events: none;
+            path.hidden {
+                display: block !important;
+            }
+        }
+        .labor {
+            color: $labor;
+        }
+        .materials {
+            color: $materials;
+        }
+        .tools {
+            color: $tools;
+        }
+        .funding {
+            color: $funding;
         }
     }
 
@@ -62,11 +108,6 @@ main {
         right: 0;
         position: absolute;
     }
-    button {
-        background: none;
-        border: none;
-        overflow: visible;
-    }
 }
 
 @mixin tinted-overview-section($color) {
@@ -97,6 +138,7 @@ main {
     z-index: 3;
 
     .close-button {
+        @include reset-button();
         position: absolute;
         cursor: pointer;
         top: 10px;
@@ -123,6 +165,7 @@ main {
         display: flex;
 
         button {
+            @include reset-button();
             border-bottom: 3px solid transparent;
             font-size: 1em;
             padding: 0;
@@ -222,7 +265,32 @@ main {
     }
 }
 
-.marker {
+.dropoff-marker {
+    z-index: 1;
+    box-shadow: $base-shadow;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background: #8bc34a;
+    color: white;
+    .caduceus {
+        width: 30px;
+        height: 30px;
+        background: url('../static/images/caduceus.svg');
+        background-size: cover;
+    }
+    .total-donations {
+        font-weight: bold;
+        font-size: 12px;
+    }
+}
+
+.response-marker {
+    @include reset-button();
     position: relative;
     width: 46px;
     height: 46px;
@@ -243,7 +311,7 @@ main {
         top: 0%;
         left: 0%;
         stroke-linecap: round;
-        filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
+        filter: drop-shadow($base-shadow);
 
         circle {
             fill: white;
@@ -268,6 +336,10 @@ main {
 
             &.funding {
                 stroke: $funding;
+            }
+
+            &.hidden {
+                display: none;
             }
         }
     }

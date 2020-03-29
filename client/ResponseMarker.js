@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import classNames from 'classNames';
 
 // keep this in sync with CSS
 const markerRadius = 23;
@@ -35,16 +36,16 @@ const describeArc = (x, y, radius, startThetaDeg, endThetaDeg) => {
 const hasEntryWithType = (entries, type) =>
     entries.some(entry => entry.offers[type] && entry.offers[type].length > 0);
 
-const Marker = props => {
+export const ResponseMarker = props => {
     const { zip, entries, onSelectMarker } = props;
 
     const renderArc = (offsetIndex, kind) => {
-        if (!hasEntryWithType(entries, kind)) {
-            return null;
-        }
         return (
             <path
-                className={kind}
+                className={classNames(
+                    kind,
+                    !hasEntryWithType(entries, kind) && 'hidden'
+                )}
                 d={describeArc(
                     markerRadius,
                     markerRadius,
@@ -59,7 +60,7 @@ const Marker = props => {
     const handleClick = () => onSelectMarker({ zip, entries });
 
     return (
-        <button className="marker" onClick={handleClick}>
+        <button className="response-marker" onClick={handleClick}>
             <svg className="indicator">
                 <circle
                     cx={markerRadius}
@@ -76,8 +77,8 @@ const Marker = props => {
     );
 };
 
-export const createMarker = props => {
-    const newDiv = document.createElement('div');
-    ReactDOM.render(<Marker {...props} />, newDiv);
-    return newDiv;
+export const createResponseMarker = props => {
+    const container = document.createElement('div');
+    ReactDOM.render(<ResponseMarker {...props} />, container);
+    return container;
 };
