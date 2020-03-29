@@ -1,8 +1,7 @@
 import { createGoogleSheetGetter } from './sheets';
 
 const getSpreadsheetRows = createGoogleSheetGetter(
-    () => process.env.DROPOFFS_SHEET_ID,
-    60
+    () => process.env.DROPOFFS_SHEET_ID
 );
 
 const isRowVisible = spreadsheetRow => {
@@ -15,17 +14,15 @@ const isRowVisible = spreadsheetRow => {
 
 const processRow = spreadsheetRow => {
     const {
-        lat,
-        lng,
+        address,
         hospitalName,
         totalDonations,
         documentationUrl,
     } = spreadsheetRow;
     return {
         hospitalName,
+        address,
         documentationUrl,
-        lat: parseFloat(lat),
-        lng: parseFloat(lng),
         totalDonations: parseInt(totalDonations),
     };
 };

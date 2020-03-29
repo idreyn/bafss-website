@@ -13,9 +13,9 @@ import { createDropoffMarker, createDropoffPopup } from './DropoffMarker';
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
 
-const getLngLatForZip = zip => {
+const getLngLatForQuery = query => {
     return mapboxClient
-        .forwardGeocode({ query: zip, countries: ['us'] })
+        .forwardGeocode({ query: query, countries: ['us'] })
         .send()
         .then(res => {
             if (
@@ -109,7 +109,7 @@ const useMapData = () => {
 
 const addResponseMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
     const markerPromise = new Promise(resolve => {
-        getLngLatForZip(zip).then(lngLat => {
+        getLngLatForQuery(zip).then(lngLat => {
             const marker = new mapboxgl.Marker(
                 createResponseMarker({ zip, entries, onSelectMarker })
             )
@@ -122,14 +122,20 @@ const addResponseMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
 };
 
 const addDropoffMarkerToMap = (map, { dropoff }) => {
-    const popup = new mapboxgl.Popup().setDOMContent(
-        createDropoffPopup({ dropoff })
-    );
-    const marker = new mapboxgl.Marker(createDropoffMarker({ dropoff }))
-        .setPopup(popup)
-        .setLngLat({ lng: dropoff.lng, lat: dropoff.lat })
-        .addTo(map);
-    return { remove: () => marker.remove() };
+    const { address } = dropoff;
+    const markerPromise = new Promise(resolve => {
+        getLngLatForQuery(address).then(lngLat => {
+            const popup = new mapboxgl.Popup().setDOMContent(
+                createDropoffPopup({ dropoff })
+            );
+            const marker = new mapboxgl.Marker(createDropoffMarker({ dropoff }))
+                .setPopup(popup)
+                .setLngLat(lngLat)
+                .addTo(map);
+            return resolve(marker);
+        });
+    });
+    return { remove: () => markerPromise.then(marker => marker.remove()) };
 };
 
 const useMapbox = ({ initialPosition, mapData, onSelectMarker, expanded }) => {
