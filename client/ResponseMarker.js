@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import classNames from 'classNames';
+import classNames from 'classnames';
 
 // keep this in sync with CSS
 const markerRadius = 23;
