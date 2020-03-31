@@ -163,6 +163,7 @@ main {
 
     .tab-selector {
         display: flex;
+        flex-shrink: 0;
 
         button {
             @include reset-button();
