@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "lint": "eslint .",
-    "heroku-prebuild": "npm run lint && npm install",
+    "heroku-prebuild": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve-prod": "node -r esm server/main.js",
     "serve-dev": "NODE_ENV=development nodemon -r --watch server esm server/main.js",

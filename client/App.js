@@ -73,8 +73,8 @@ const App = () => {
                 If you aren't in a position to work on this but would like to
                 support our efforts, contributors' time is entirely donated, and
                 we're buying all our supplies out of pocket at local and online
-                retail outlets, then rush shipping them to providers in need. Defraying some of those costs would be
-                enormously helpful!
+                retail outlets, then rush shipping them to providers in need.
+                Defraying some of those costs would be enormously helpful!
                 <br></br>
                 (Your personal information will remain confidential)
             </p>
