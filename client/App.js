@@ -46,7 +46,7 @@ const App = () => {
                     </li>
                     <li>
                         {dummyDonationMarker} we have provided face shields to
-                        hospitals and medical facilities
+                        hospitals and healthcare workers
                     </li>
                 </ul>
             </div>
@@ -64,18 +64,19 @@ const App = () => {
             <p>
                 <strong>
                     <a href="https://forms.gle/pDxaSF5idGm15di98">
-                        CLICK HERE TO HELP
+                        PUT YOURSELF ON THE MAP! CLICK HERE TO HELP
                     </a>
                 </strong>{' '}
-                (Your personal information will remain anonymous)
             </p>
             <h3>Contributing Funds</h3>
             <p>
                 If you aren't in a position to work on this but would like to
                 support our efforts, contributors' time is entirely donated, and
                 we're buying all our supplies out of pocket at local and online
-                retail outlets. Defraying some of those costs would be
+                retail outlets, then rush shipping them to providers in need. Defraying some of those costs would be
                 enormously helpful!
+                <br></br>
+                (Your personal information will remain confidential)
             </p>
             <h4>PayPal</h4>
             <form
