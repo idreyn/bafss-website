@@ -5,25 +5,12 @@ import createMapboxClient from '@mapbox/mapbox-sdk/services/geocoding';
 
 import { MAPBOX_ACCESS_TOKEN } from '../config';
 
-import { useQueryParams } from './util';
 import { createResponseMarker } from './ResponseMarker';
 import DetailsPane from './DetailsPane';
 import { createDonationMarker, createDonationPopup } from './DonationMarker';
 
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
-
-const groupItemsByField = (items, fieldName) => {
-    const res = {};
-    items.forEach(item => {
-        const itemValueAtField = item[fieldName];
-        if (!res[itemValueAtField]) {
-            res[itemValueAtField] = [];
-        }
-        res[itemValueAtField].push(item);
-    });
-    return res;
-};
 
 const getLngLatForQuery = query => {
     return mapboxClient
@@ -80,31 +67,6 @@ const setupMap = ({ domElement, initialPosition, onClickBackground }) => {
         });
     });
     return map;
-};
-
-const useMapData = () => {
-    const [responses, setResponses] = useState(null);
-    const [donations, setdonations] = useState(null);
-    const { access } = useQueryParams();
-
-    useEffect(() => {
-        fetch(`/api/mapData?access=${access}`)
-            .then(res => res.json())
-            .then(({ responses, donations }) => {
-                setResponses(responses);
-                setdonations(donations);
-            });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    if (responses && donations) {
-        return {
-            responses: groupItemsByField(responses, 'zip'),
-            donations: groupItemsByField(donations, 'locationName'),
-        };
-    }
-
-    return null;
 };
 
 const addResponseMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
@@ -247,10 +209,9 @@ const mapScopes = [
 ];
 
 const Map = props => {
-    const { expanded } = props;
+    const { expanded, mapData } = props;
     const [openMarker, setOpenMarker] = useState(null);
     const [currentScope, setCurrentScope] = useState(mapScopes[0]);
-    const mapData = useMapData();
 
     const { setMapRef } = useMapbox({
         mapData,

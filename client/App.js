@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import Map from './Map';
 import { useQueryParams } from './util';
-import Photos from './Photos';
 import { ResponseMarker } from './ResponseMarker';
 import { DonationMarker } from './DonationMarker';
-
-import er1 from '../static/images/er-1.png';
-import er2 from '../static/images/er-2.png';
+import { useMapData } from './useMapData';
+import HeroCounter from './HeroCounter';
+import Map from './Map';
 
 const dummyResponseMarker = (
     <ResponseMarker zip="" entries={[]} onSelectMarker={() => {}} />
@@ -21,12 +19,14 @@ const dummyDonationMarker = (
 const App = () => {
     const { expandmap } = useQueryParams();
     const [isMapExpanded, setMapExpanded] = useState(expandmap);
+    const mapData = useMapData();
+
     return (
         <main className={classNames(isMapExpanded && 'map-expanded')}>
             <div className="header">
                 <h1>Bay Area Face Shield Supply</h1>
             </div>
-            <Photos srcs={[er1, er2]} />
+            {mapData && <HeroCounter donations={mapData.donations} />}
             <p>
                 Health care workers around the Bay Area are low on protective
                 equipment as they fight the coronavirus pandemic. We are
@@ -50,7 +50,11 @@ const App = () => {
                     </li>
                 </ul>
             </div>
-            <Map expanded={isMapExpanded} onExpand={setMapExpanded} />
+            <Map
+                expanded={isMapExpanded}
+                onExpand={setMapExpanded}
+                mapData={mapData}
+            />
             <h3>Contributing Effort</h3>
             <p>
                 The interactive map above shows (by ZIP code) where people have
