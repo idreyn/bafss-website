@@ -69,7 +69,8 @@ main {
 
 .map {
     width: 100vw;
-    height: 50vh;
+    height: 75vh;
+    max-height: 600px;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
