@@ -8,6 +8,10 @@ import { useMapData } from './useMapData';
 import HeroCounter from './HeroCounter';
 import Map from './Map';
 
+// import myOtherImage from '../static/images/myOtherImage.png';
+// later on...
+// <img src={myOtherImage} />
+
 const dummyResponseMarker = (
     <ResponseMarker zip="" entries={[]} onSelectMarker={() => {}} />
 );
