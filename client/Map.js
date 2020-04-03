@@ -8,10 +8,22 @@ import { MAPBOX_ACCESS_TOKEN } from '../config';
 import { useQueryParams } from './util';
 import { createResponseMarker } from './ResponseMarker';
 import DetailsPane from './DetailsPane';
-import { createDropoffMarker, createDropoffPopup } from './DropoffMarker';
+import { createDonationMarker, createDonationPopup } from './DonationMarker';
 
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
+
+const groupItemsByField = (items, fieldName) => {
+    const res = {};
+    items.forEach(item => {
+        const itemValueAtField = item[fieldName];
+        if (!res[itemValueAtField]) {
+            res[itemValueAtField] = [];
+        }
+        res[itemValueAtField].push(item);
+    });
+    return res;
+};
 
 const getLngLatForQuery = query => {
     return mapboxClient
@@ -28,18 +40,6 @@ const getLngLatForQuery = query => {
                 return feature.center;
             }
         });
-};
-
-const groupResponsesByZip = responses => {
-    const res = {};
-    responses.forEach(response => {
-        const { zip } = response;
-        if (!res[zip]) {
-            res[zip] = [];
-        }
-        res[zip].push(response);
-    });
-    return res;
 };
 
 const setupMap = ({ domElement, initialPosition, onClickBackground }) => {
@@ -84,23 +84,23 @@ const setupMap = ({ domElement, initialPosition, onClickBackground }) => {
 
 const useMapData = () => {
     const [responses, setResponses] = useState(null);
-    const [dropoffs, setDropoffs] = useState(null);
+    const [donations, setdonations] = useState(null);
     const { access } = useQueryParams();
 
     useEffect(() => {
         fetch(`/api/mapData?access=${access}`)
             .then(res => res.json())
-            .then(({ responses, dropoffs }) => {
+            .then(({ responses, donations }) => {
                 setResponses(responses);
-                setDropoffs(dropoffs);
+                setdonations(donations);
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (responses && dropoffs) {
+    if (responses && donations) {
         return {
-            responses: groupResponsesByZip(responses),
-            dropoffs: dropoffs,
+            responses: groupItemsByField(responses, 'zip'),
+            donations: groupItemsByField(donations, 'locationName'),
         };
     }
 
@@ -121,14 +121,17 @@ const addResponseMarkerToMap = (map, { zip, entries, onSelectMarker }) => {
     return { remove: () => markerPromise.then(marker => marker.remove()) };
 };
 
-const addDropoffMarkerToMap = (map, { dropoff }) => {
-    const { address } = dropoff;
+const addDonationMarkerToMap = (map, { donations }) => {
+    // Foolishly assume the address will be the same for all elements with the same locationName
+    const [firstDonation] = donations;
     const markerPromise = new Promise(resolve => {
-        getLngLatForQuery(address).then(lngLat => {
+        getLngLatForQuery(firstDonation.address).then(lngLat => {
             const popup = new mapboxgl.Popup().setDOMContent(
-                createDropoffPopup({ dropoff })
+                createDonationPopup({ donations })
             );
-            const marker = new mapboxgl.Marker(createDropoffMarker({ dropoff }))
+            const marker = new mapboxgl.Marker(
+                createDonationMarker({ donations })
+            )
                 .setPopup(popup)
                 .setLngLat(lngLat)
                 .addTo(map);
@@ -138,7 +141,7 @@ const addDropoffMarkerToMap = (map, { dropoff }) => {
     return { remove: () => markerPromise.then(marker => marker.remove()) };
 };
 
-const useMapbox = ({ initialPosition, mapData, onSelectMarker, expanded }) => {
+const useMapbox = ({ scope, mapData, onSelectMarker, expanded }) => {
     const [domElement, setDomElement] = useState(null);
     const [map, setMap] = useState(null);
     const markerHandlesRef = useRef([]);
@@ -172,8 +175,16 @@ const useMapbox = ({ initialPosition, mapData, onSelectMarker, expanded }) => {
     }, [map, expanded]);
 
     useEffect(() => {
+        if (map) {
+            const { center, zoom } = scope.position;
+            map.setZoom(zoom);
+            map.setCenter(center);
+        }
+    }, [map, scope]);
+
+    useEffect(() => {
         const addMarkersToMap = (map, nextMapData) => {
-            const { responses, dropoffs } = nextMapData;
+            const { responses, donations } = nextMapData;
             const { current: responseMarkerHandles } = markerHandlesRef;
             responseMarkerHandles.forEach(handle => handle.remove());
             const nextResponseMarkerHandles = [];
@@ -188,9 +199,11 @@ const useMapbox = ({ initialPosition, mapData, onSelectMarker, expanded }) => {
                 )
             );
 
-            dropoffs.forEach(dropoff =>
+            Object.values(donations).forEach(donationsToLocation =>
                 nextResponseMarkerHandles.push(
-                    addDropoffMarkerToMap(map, { dropoff })
+                    addDonationMarkerToMap(map, {
+                        donations: donationsToLocation,
+                    })
                 )
             );
 
@@ -201,37 +214,69 @@ const useMapbox = ({ initialPosition, mapData, onSelectMarker, expanded }) => {
             if (!map) {
                 const map = setupMap({
                     domElement,
-                    initialPosition,
+                    initialPosition: scope.position,
                     onClickBackground: () => onSelectMarker(null),
                 });
                 addMarkersToMap(map, mapData);
                 setMap(map);
             }
         }
-    }, [domElement, initialPosition, mapData, onSelectMarker, map]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [domElement, mapData, onSelectMarker, map]);
 
     return { setMapRef: setDomElement };
 };
 
-const bayAreaPosition = {
-    center: [-122, 37.6],
-    zoom: 8.0,
-};
+const mapScopes = [
+    {
+        key: 'bay-area',
+        label: 'Bay Area',
+        position: {
+            center: [-122, 37.6],
+            zoom: 8.0,
+        },
+    },
+    {
+        key: 'continental-us',
+        label: 'Continental US',
+        position: {
+            center: [-98.35, 39.5],
+            zoom: 3.5,
+        },
+    },
+];
 
 const Map = props => {
     const { expanded } = props;
     const [openMarker, setOpenMarker] = useState(null);
+    const [currentScope, setCurrentScope] = useState(mapScopes[0]);
     const mapData = useMapData();
 
     const { setMapRef } = useMapbox({
         mapData,
         expanded,
-        initialPosition: bayAreaPosition,
+        scope: currentScope,
         onSelectMarker: setOpenMarker,
     });
 
     return (
         <div className={classNames('map', expanded && 'expanded')}>
+            <div className="scope-selector">
+                <span className="label">Select scope:</span>
+                {mapScopes.map(scope => (
+                    <button
+                        key={scope.key}
+                        type="button"
+                        className={classNames(
+                            'scope',
+                            currentScope === scope && 'active'
+                        )}
+                        onClick={() => setCurrentScope(scope)}
+                    >
+                        {scope.label}
+                    </button>
+                ))}
+            </div>
             {openMarker && (
                 <DetailsPane
                     marker={openMarker}

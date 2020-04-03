@@ -55,7 +55,7 @@ main {
             padding: 0;
         }
         .response-marker,
-        .dropoff-marker {
+        .donation-marker {
             display: inline-flex;
             vertical-align: middle;
             transform: scale(0.7);
@@ -150,7 +150,6 @@ main {
         font-size: 20px;
         line-height: 22px;
         &:hover {
-            border-radius: 4px;
             background: #eee;
         }
     }
@@ -266,7 +265,7 @@ main {
     }
 }
 
-.dropoff-marker {
+.donation-marker {
     z-index: 1;
     box-shadow: $base-shadow;
     position: relative;
@@ -287,6 +286,13 @@ main {
     .total-donations {
         font-weight: bold;
         font-size: 12px;
+    }
+}
+
+.donation-popup {
+    .location-name {
+        font-weight: bold;
+        font-size: 1.25em;
     }
 }
 
@@ -343,5 +349,41 @@ main {
                 display: none;
             }
         }
+    }
+}
+
+.mapboxgl-popup {
+    z-index: 1;
+}
+
+.scope-selector {
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 20px;
+    transform: translate(-50%, 0);
+    background: white;
+    padding: 5px;
+    box-shadow: $base-shadow;
+
+    .label {
+        font-weight: bold;
+    }
+
+    .scope {
+        @include reset-button();
+        cursor: pointer;
+        font-size: inherit;
+        padding: 5px;
+        &:hover:not(.active) {
+            background: #eee;
+        }
+        &.active {
+            background: #ddd;
+        }
+    }
+
+    & > :not(:last-child) {
+        margin-right: 5px;
     }
 }

@@ -1,7 +1,7 @@
 import { createGoogleSheetGetter } from './sheets';
 
 const getSpreadsheetRows = createGoogleSheetGetter(
-    () => process.env.DROPOFFS_SHEET_ID
+    () => process.env.DONATIONS_SHEET_ID
 );
 
 const isRowVisible = spreadsheetRow => {
@@ -15,19 +15,25 @@ const isRowVisible = spreadsheetRow => {
 const processRow = spreadsheetRow => {
     const {
         address,
-        hospitalName,
+        locationName,
         totalDonations,
         documentationUrl,
+        donationType,
+        date,
+        id,
     } = spreadsheetRow;
     return {
-        hospitalName,
+        locationName,
         address,
         documentationUrl,
+        donationType,
+        date,
+        id,
         totalDonations: parseInt(totalDonations),
     };
 };
 
-export const getDropoffs = async () => {
+export const getDonations = async () => {
     const rows = await getSpreadsheetRows();
     return rows.filter(isRowVisible).map(processRow);
 };

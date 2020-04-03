@@ -9,7 +9,7 @@ try {
 }
 
 import { getResponses } from './responses';
-import { getDropoffs } from './dropoffs';
+import { getDonations } from './donations';
 import { hasAdminAccess } from './util';
 
 const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
@@ -21,9 +21,9 @@ app.get('/api/mapData', (req, res, next) => {
     const {
         query: { access },
     } = req;
-    return Promise.all([getResponses(hasAdminAccess(access)), getDropoffs()])
-        .then(([responses, dropoffs]) =>
-            res.status(200).json({ responses, dropoffs })
+    return Promise.all([getResponses(hasAdminAccess(access)), getDonations()])
+        .then(([responses, donations]) =>
+            res.status(200).json({ responses, donations })
         )
         .catch(next);
 });

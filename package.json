@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "heroku-prebuild": "npm install --dev",
+    "lint": "eslint .",
+    "heroku-prebuild": "npm run lint && npm install --only=dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve-prod": "node -r esm server/main.js",
     "serve-dev": "NODE_ENV=development nodemon -r --watch server esm server/main.js",
@@ -47,6 +48,7 @@
     "express": "^4.17.1",
     "google-spreadsheet": "^3.0.10",
     "mapbox-gl": "^1.9.0",
+    "pluralize": "^8.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

@@ -5,7 +5,7 @@ import Map from './Map';
 import { useQueryParams } from './util';
 import Photos from './Photos';
 import { ResponseMarker } from './ResponseMarker';
-import { DropoffMarker } from './DropoffMarker';
+import { DonationMarker } from './DonationMarker';
 
 import er1 from '../static/images/er-1.png';
 import er2 from '../static/images/er-2.png';
@@ -14,7 +14,9 @@ const dummyResponseMarker = (
     <ResponseMarker zip="" entries={[]} onSelectMarker={() => {}} />
 );
 
-const dummyDropoffMarker = <DropoffMarker dropoff={{ totalDonations: 25 }} />;
+const dummyDonationMarker = (
+    <DonationMarker donations={[{ totalDonations: 25 }]} />
+);
 
 const App = () => {
     const { expandmap } = useQueryParams();
@@ -43,8 +45,8 @@ const App = () => {
                         <span className="funding">money</span>
                     </li>
                     <li>
-                        {dummyDropoffMarker} we have provided face shields to
-                        hospitals and medical facilities.
+                        {dummyDonationMarker} we have provided face shields to
+                        hospitals and medical facilities
                     </li>
                 </ul>
             </div>
