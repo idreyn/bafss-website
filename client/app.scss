@@ -25,6 +25,10 @@ p {
     display: grid;
     grid-template-columns: 1fr 550px 300px 1fr;
     grid-template-areas: 'gutter-left left right gutter-right';
+
+    @media screen and (max-width: 750px) {
+        grid-template-columns: 4% 72% 22% 4%;
+    }
 }
 
 header {
