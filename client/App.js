@@ -60,7 +60,7 @@ const App = () => {
                 <div className="count">
                     {mapData ? getDonationCount(mapData.donations) : '...'}
                 </div>
-                <div className="tag">donated so far</div>
+                <div className="tag">shields donated</div>
             </div>
         );
     };
