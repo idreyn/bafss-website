@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
+import './responseMarker.scss';
+
 // keep this in sync with CSS
 const markerRadius = 23;
 
@@ -60,7 +62,7 @@ export const ResponseMarker = props => {
     const handleClick = () => onSelectMarker({ zip, entries });
 
     return (
-        <button className="response-marker" onClick={handleClick}>
+        <button className="response-marker-component" onClick={handleClick}>
             <svg className="indicator">
                 <circle
                     cx={markerRadius}

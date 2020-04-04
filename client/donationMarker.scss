@@ -1,0 +1,32 @@
+@import './shared.scss';
+
+.donation-marker-component {
+    z-index: 1;
+    box-shadow: $base-shadow;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 23px;
+    background: #8bc34a;
+    color: white;
+    .caduceus {
+        width: 30px;
+        height: 30px;
+        background: url('../static/images/caduceus.svg');
+        background-size: cover;
+    }
+    .total-donations {
+        font-weight: bold;
+        font-size: 12px;
+    }
+}
+
+.donation-popup-component {
+    .location-name {
+        font-weight: bold;
+        font-size: 1.25em;
+    }
+}

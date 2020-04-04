@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
+import { Tab, TabList, TabPanel, useTabState } from 'reakit/Tab';
+import * as Icons from 'grommet-icons';
+
 import { label } from './labels';
+
+import './detailsPane.scss';
+import { FormClose } from 'grommet-icons';
 
 const getOverviewItems = entries => {
     const materials = new Set();
@@ -28,8 +34,7 @@ const DetailsPane = props => {
     } = props;
 
     const overviewItems = getOverviewItems(entries);
-
-    const [tab, setTab] = useState('overview');
+    const tabs = useTabState();
 
     const renderOverviewForType = (type, items) => {
         if (items.length === 0) {
@@ -124,30 +129,24 @@ const DetailsPane = props => {
 
     return (
         <div className="details-pane">
-            <div className="top-row">
-                <h1>Responses from {zip}</h1>
-                <button className="close-button" onClick={onClose}>
-                    &times;
-                </button>
-            </div>
-            <div className="tab-selector">
-                <button
-                    onClick={() => setTab('overview')}
-                    className={classNames(tab === 'overview' && 'selected')}
-                >
-                    Overview
-                </button>
-                <button
-                    onClick={() => setTab('responses')}
-                    className={classNames(tab === 'responses' && 'selected')}
-                >
-                    Individual responses
-                </button>
-            </div>
-            <div className="tab-pane">
-                {tab === 'overview' && renderOverview()}
-                {tab === 'responses' && renderResponses()}
-            </div>
+            <h3>Responses from {zip}</h3>
+            <button
+                className="close-button"
+                onClick={onClose}
+                aria-label="Close"
+            >
+                <FormClose />
+            </button>
+            <TabList>
+                <Tab {...tabs}>Overview</Tab>
+                <Tab {...tabs}>Individual responses</Tab>
+            </TabList>
+            <TabPanel className="tab-panel" {...tabs}>
+                {renderOverview()}
+            </TabPanel>
+            <TabPanel className="tab-panel" {...tabs}>
+                {renderResponses()}
+            </TabPanel>
         </div>
     );
 };

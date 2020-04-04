@@ -9,6 +9,8 @@ import { createResponseMarker } from './ResponseMarker';
 import DetailsPane from './DetailsPane';
 import { createDonationMarker, createDonationPopup } from './DonationMarker';
 
+import './map.scss';
+
 mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
 const mapboxClient = createMapboxClient({ accessToken: MAPBOX_ACCESS_TOKEN });
 
@@ -221,17 +223,15 @@ const Map = props => {
     });
 
     return (
-        <div className={classNames('map', expanded && 'expanded')}>
+        <div className={classNames('map-component', expanded && 'expanded')}>
             <div className="scope-selector">
-                <span className="label">Select scope:</span>
                 {mapScopes.map(scope => (
                     <button
-                        key={scope.key}
-                        type="button"
                         className={classNames(
                             'scope',
                             currentScope === scope && 'active'
                         )}
+                        key={scope.key}
                         onClick={() => setCurrentScope(scope)}
                     >
                         {scope.label}

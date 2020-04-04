@@ -1,0 +1,122 @@
+@import './shared.scss';
+
+@mixin tinted-overview-section($color) {
+    .head {
+        background-color: $color;
+    }
+    .body {
+        background-color: mix(white, $color, 90%);
+    }
+}
+
+.details-pane {
+    @include card;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 40px);
+    width: 20%;
+    padding: 10px;
+    max-width: 500px;
+    min-width: 350px;
+    background: white;
+    box-shadow: $base-shadow;
+    z-index: 3;
+
+    .close-button {
+        @include reset-button($add-hover-style: true);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .tab-panel {
+        overflow-y: auto;
+    }
+
+    .overview-section {
+        @include card;
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+
+        .head,
+        .body {
+            padding: 10px;
+        }
+        .head {
+            color: white;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        .body {
+            ul {
+                list-style-type: square;
+                margin-top: 0;
+                margin-bottom: 0;
+                li {
+                    &:not(:last-child) {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+        &.materials {
+            @include tinted-overview-section($materials);
+        }
+        &.labor {
+            @include tinted-overview-section($labor);
+        }
+        &.tools {
+            @include tinted-overview-section($tools);
+        }
+        &.funding {
+            @include tinted-overview-section($funding);
+        }
+    }
+
+    .response-section {
+        padding: 10px;
+        margin-top: 15px;
+        background: #eee;
+        @include card;
+
+        .info {
+            .field {
+                margin-bottom: 5px;
+                .key {
+                    text-transform: capitalize;
+                }
+            }
+
+            :last-child {
+                margin-bottom: 10px;
+            }
+        }
+
+        .offer {
+            .key {
+                text-transform: capitalize;
+            }
+            padding: 10px;
+            color: white;
+            &.materials {
+                background-color: $materials;
+            }
+            &.labor {
+                background-color: $labor;
+            }
+            &.tools {
+                background-color: $tools;
+            }
+            &.funding {
+                background-color: $funding;
+            }
+        }
+    }
+}

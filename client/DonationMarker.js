@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import pluralize from 'pluralize';
 
+import './donationMarker.scss';
+
 export const DonationMarker = props => {
     const { donations } = props;
     const grandTotalDonations = donations.reduce(
@@ -9,7 +11,7 @@ export const DonationMarker = props => {
         0
     );
     return (
-        <div className="donation-marker">
+        <div className="donation-marker-component">
             <div className="caduceus" />
             <div className="total-donations">{grandTotalDonations}</div>
         </div>
@@ -48,7 +50,7 @@ const DonationPopup = props => {
     };
 
     return (
-        <div className="donation-popup">
+        <div className="donation-popup-component">
             <div className="location-name">{locationName}</div>
             <ul>
                 {donations.map((donation, index) =>
