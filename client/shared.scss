@@ -37,3 +37,9 @@ $funding: #e64a19;
     border-radius: 8px;
     overflow: hidden;
 }
+
+@mixin mobile {
+    @media screen and (max-width: 500px) {
+        @content;
+    }
+}

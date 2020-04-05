@@ -100,7 +100,7 @@ const App = () => {
                     <div className="cta-links">
                         <div className="cta">
                             <a
-                                className="hero-link"
+                                className="cta-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 href="https://forms.gle/pDxaSF5idGm15di98"
@@ -110,7 +110,7 @@ const App = () => {
                         </div>
                         <div className="cta">
                             <a
-                                className="hero-link"
+                                className="cta-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 href="https://www.paypal.me/bayareafaceshields"

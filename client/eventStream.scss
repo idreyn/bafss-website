@@ -10,8 +10,10 @@ $vertical-spacing: 7px;
             align-items: center;
             margin-bottom: $vertical-spacing;
             .date-text {
+                text-align: center;
                 font-style: italic;
-                padding: 4px;
+                padding: 4px 0;
+                width: 80px;
                 border-radius: 100px;
                 color: white;
                 background: $base-accent;
