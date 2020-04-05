@@ -1,3 +1,5 @@
+import md5 from 'md5';
+
 import { createGoogleSheetGetter } from './sheets';
 
 const getSpreadsheetRows = createGoogleSheetGetter(
@@ -21,7 +23,7 @@ const processRow = spreadsheetRow => {
         imageUrl,
         donationType,
         date,
-        id,
+        locationId,
     } = spreadsheetRow;
     return {
         locationName,
@@ -30,7 +32,7 @@ const processRow = spreadsheetRow => {
         imageUrl,
         donationType,
         date,
-        id,
+        locationId: md5(locationId),
         totalDonations: parseInt(totalDonations),
     };
 };

@@ -56,7 +56,7 @@ export const useMapData = () => {
     if (responses && donations) {
         return {
             responses: groupItemsByField(responses, 'zip'),
-            donations: groupItemsByField(donations, 'locationName'),
+            donations: groupItemsByField(donations, 'locationId'),
             events: createEventsStream(donations),
         };
     }
