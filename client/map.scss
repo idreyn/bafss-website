@@ -23,6 +23,8 @@
     }
 
     .scope-selector {
+        cursor: pointer;
+        font-size: 0.7em;
         display: flex;
         position: absolute;
         z-index: 2;
@@ -32,8 +34,6 @@
         border-radius: 100px;
 
         .scope {
-            @include reset-button;
-            border-radius: 0;
             background: white;
             color: $base-accent;
             padding: 5px;

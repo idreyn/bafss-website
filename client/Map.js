@@ -226,7 +226,9 @@ const Map = props => {
         <div className={classNames('map-component', expanded && 'expanded')}>
             <div className="scope-selector">
                 {mapScopes.map(scope => (
-                    <button
+                    <div
+                        role="button"
+                        tabIndex="0"
                         className={classNames(
                             'scope',
                             currentScope === scope && 'active'
@@ -235,7 +237,7 @@ const Map = props => {
                         onClick={() => setCurrentScope(scope)}
                     >
                         {scope.label}
-                    </button>
+                    </div>
                 ))}
             </div>
             {openMarker && (
