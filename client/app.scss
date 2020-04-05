@@ -226,6 +226,7 @@ header {
     background: $base-accent;
     text-decoration: none;
     box-shadow: $base-shadow;
+    transition: 100ms background-color ease-in-out;
     &:hover {
         background: darken($base-accent, 10%);
     }
