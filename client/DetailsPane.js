@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { Tab, TabList, TabPanel, useTabState } from 'reakit/Tab';
-import * as Icons from 'grommet-icons';
 
 import { label } from './labels';
 
 import './detailsPane.scss';
-import { FormClose } from 'grommet-icons';
 
 const getOverviewItems = entries => {
     const materials = new Set();
@@ -135,7 +133,7 @@ const DetailsPane = props => {
                 onClick={onClose}
                 aria-label="Close"
             >
-                <FormClose />
+                &times;
             </button>
             <TabList>
                 <Tab {...tabs}>Overview</Tab>

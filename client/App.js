@@ -94,7 +94,7 @@ const App = () => {
                     </div>
                     <div className="call-to-action">
                         <div className="ask">
-                            Willing to help print or assemble shields? Can you
+                            Want to help print or assemble shields? Can you
                             contribute a few dollars towards our effort?
                         </div>
                         <div className="cta-links">
