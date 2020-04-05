@@ -23,9 +23,9 @@ const helpFields = {
     },
 };
 
-const getSpreadsheetRows = createGoogleSheetGetter(
-    () => process.env.RESPONSES_SHEET_ID
-);
+const getSpreadsheetRows = createGoogleSheetGetter({
+    getId: () => process.env.RESPONSES_SHEET_ID,
+});
 
 const matchCaseInsensitive = (needle, haystack) =>
     needle && haystack && haystack.toLowerCase().includes(needle.toLowerCase());

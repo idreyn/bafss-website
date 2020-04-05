@@ -9,8 +9,8 @@ try {
 }
 
 import { getResponses } from './responses';
-import { getDonations } from './donations';
 import { hasAdminAccess } from './util';
+import { getEvents } from './events';
 
 const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
 const app = express();
@@ -18,13 +18,13 @@ const app = express();
 app.use(forceHttps);
 app.use(express.static(staticRoot));
 
-app.get('/api/mapData', (req, res, next) => {
+app.get('/api/data', (req, res, next) => {
     const {
         query: { access },
     } = req;
-    return Promise.all([getResponses(hasAdminAccess(access)), getDonations()])
-        .then(([responses, donations]) =>
-            res.status(200).json({ responses, donations })
+    return Promise.all([getResponses(hasAdminAccess(access)), getEvents()])
+        .then(([responses, events]) =>
+            res.status(200).json({ responses, events })
         )
         .catch(next);
 });

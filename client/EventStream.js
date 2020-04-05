@@ -15,21 +15,27 @@ const renderDonationEventText = donation => {
     );
 };
 
+const htmlBody = bodyString => (
+    <span dangerouslySetInnerHTML={{ __html: bodyString }} />
+);
+
 const EventItem = props => {
     const { event } = props;
     const { imageUrl, documentationUrl } = event;
 
-    const eventText =
-        event.type === 'donation' ? renderDonationEventText(event) : event.text;
+    const eventBody =
+        event.type === 'donation'
+            ? renderDonationEventText(event)
+            : htmlBody(event.body);
 
-    if (!eventText) {
+    if (!eventBody) {
         return null;
     }
 
     return (
         <div className="event-item">
             <div className="text">
-                {eventText}
+                {eventBody}
                 {documentationUrl && (
                     <>
                         <br />

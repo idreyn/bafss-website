@@ -20,14 +20,14 @@ const parseDateFromString = (string, separator = '/') => {
     return new Date(year, month - 1, date);
 };
 
-const createEventsStream = (donations, events = []) => {
+const createEventsStream = (donations, notes) => {
     return groupItemsByField(
         [
             ...donations.map(d => ({
                 ...d,
                 type: 'donation',
             })),
-            ...events,
+            ...notes,
         ]
             .filter(e => e.date)
             .map(e => ({
@@ -40,24 +40,25 @@ const createEventsStream = (donations, events = []) => {
 
 export const useMapData = () => {
     const [responses, setResponses] = useState(null);
-    const [donations, setdonations] = useState(null);
+    const [events, setEvents] = useState(null);
     const { access } = useQueryParams();
 
     useEffect(() => {
-        fetch(`/api/mapData?access=${access}`)
+        fetch(`/api/data?access=${access}`)
             .then(res => res.json())
-            .then(({ responses, donations }) => {
+            .then(({ responses, events }) => {
                 setResponses(responses);
-                setdonations(donations);
+                setEvents(events);
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (responses && donations) {
+    if (responses && events) {
+        const { donations, notes } = events;
         return {
             responses: groupItemsByField(responses, 'zip'),
             donations: groupItemsByField(donations, 'locationId'),
-            events: createEventsStream(donations),
+            events: createEventsStream(donations, notes),
         };
     }
 
