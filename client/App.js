@@ -113,7 +113,7 @@ const App = () => {
                                 className="hero-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RYF9NU6X6BSL4"
+                                href="https://www.paypal.me/bayareafaceshields"
                             >
                                 Donate via Paypal &rsaquo;
                             </a>
