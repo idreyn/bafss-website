@@ -169,6 +169,9 @@ header {
     &:hover {
         background: darken($base-accent, 10%);
     }
+    &:focus {
+        outline: 2px solid lighten($base-accent, 20%);
+    }
     @include mobile {
         padding: 10px 15px;
         font-size: 1em;
