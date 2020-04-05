@@ -1,0 +1,49 @@
+@import './shared.scss';
+
+$vertical-spacing: 7px;
+
+.event-stream-component {
+    .event-stream-date {
+        .date-header {
+            font-size: 0.7em;
+            display: flex;
+            align-items: center;
+            margin-bottom: $vertical-spacing;
+            .date-text {
+                font-style: italic;
+                padding: 4px;
+                border-radius: 100px;
+                color: white;
+                background: $base-accent;
+            }
+            .date-bar {
+                flex-grow: 1;
+                height: 2px;
+                background: $base-accent;
+                border-radius: 2px;
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .event-item {
+        font-size: 0.9em;
+        padding-bottom: $vertical-spacing;
+        margin-bottom: $vertical-spacing;
+        em {
+            font-style: normal;
+        }
+        img {
+            width: 100%;
+            box-shadow: $base-shadow;
+            @include card;
+        }
+        .image-container {
+            display: block;
+            margin-top: $vertical-spacing;
+        }
+        &:not(:last-child) {
+            border-bottom: 1px solid #ccc;
+        }
+    }
+}

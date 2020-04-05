@@ -29,20 +29,7 @@ a {
         background: rgba($base-accent, 0.05);
     }
 }
-
-@mixin page-grid {
-    display: grid;
-    grid-template-columns: 1fr 550px 300px 1fr;
-    grid-template-areas: 'gutter-left left right gutter-right';
-
-    @media screen and (max-width: 750px) {
-        grid-template-columns: 4% 71% 21% 4%;
-    }
-}
-
 header {
-    @include page-grid;
-
     .header-and-counter {
         display: flex;
         grid-column: 2 / -1;
@@ -54,69 +41,10 @@ header {
             transform: scale(0.8) rotate(-5deg);
         }
     }
-
-    // .stripes {
-    //     background-image: linear-gradient(
-    //         0deg,
-    //         $lighter-accent 8.33%,
-    //         white 8.33%,
-    //         white 16.67%,
-    //         $lighter-accent 16.67%,
-    //         $lighter-accent 25%,
-    //         white 25%,
-    //         white 33.33%,
-    //         $lighter-accent 33.33%,
-    //         $lighter-accent 41.67%,
-    //         white 41.67%,
-    //         white 50%,
-    //         $lighter-accent 50%,
-    //         $lighter-accent 58.33%,
-    //         white 58.33%,
-    //         white 66.67%,
-    //         $lighter-accent 66.67%,
-    //         $lighter-accent 75%,
-    //         white 75%,
-    //         white 83.33%,
-    //         $lighter-accent 83.33%,
-    //         $lighter-accent 91.67%,
-    //         white 91.67%,
-    //         white 100%
-    //     );
-    //     background-size: 240px 150%;
-    //     background: $base-accent;
-    //     opacity: 0.5;
-    // }
-
-    // .header-and-stripes {
-    //     display: flex;
-    //     grid-column: 2/-2;
-    //     h1 {
-    //         font-size: 50px;
-    //         line-height: 50px;
-    //         margin: 0;
-    //         padding-left: 20px;
-    //         padding-right: 20px;
-    //     }
-    //     .stripes {
-    //         flex-grow: 1;
-    //     }
-    // }
-
-    // .stripes.first {
-    //     grid-column: 1;
-    // }
-
-    // .stripes.last {
-    //     grid-column: 4;
-    // }
 }
 
-.hero-wrapper {
-    @include page-grid;
-    .hero {
-        grid-column: 2 / -2;
-        font-size: 1.1em;
-    }
+.hero {
+    font-size: 1.1em;
 }
 
 .hero-pair {
@@ -128,6 +56,21 @@ header {
     }
     &.row-reverse {
         flex-direction: row-reverse;
+    }
+}
+
+.hero-link {
+    display: inline-flex;
+    padding: 15px;
+    border-radius: 100px;
+    margin: 10px;
+    color: white;
+    background: $base-accent;
+    text-decoration: none;
+    box-shadow: $base-shadow;
+    transition: 100ms background-color ease-in-out;
+    &:hover {
+        background: darken($base-accent, 10%);
     }
 }
 
@@ -217,41 +160,10 @@ header {
     }
 }
 
-.hero-link {
-    display: inline-flex;
-    padding: 15px;
-    border-radius: 100px;
-    margin: 10px;
-    color: white;
-    background: $base-accent;
-    text-decoration: none;
-    box-shadow: $base-shadow;
-    transition: 100ms background-color ease-in-out;
-    &:hover {
-        background: darken($base-accent, 10%);
-    }
-}
-
 main {
-    @include page-grid;
-
-    .left-column {
-        grid-column: 2 / -2;
-        &:not(:last-child) {
-            padding-right: 20px;
-        }
-    }
-
-    .right-column {
-        grid-area: right;
-    }
-
-    .left-column,
-    .right-column {
-        :first-child {
-            margin-top: 0;
-        }
-    }
+    width: 850px;
+    margin: 0 auto;
+    max-width: 92%;
 }
 
 .news-feed {
@@ -299,26 +211,32 @@ main {
     }
 }
 
-.hero-counter {
+.two-column {
     display: flex;
-    & > * {
-        height: 150px;
+    .right-column {
+        margin-left: 20px;
+        width: 300px;
+        min-width: 250px;
+        flex-basis: 0;
+        flex-grow: 1;
     }
-    .center {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box;
-        background: #eee;
-        .label {
-            font-size: 1.25em;
+    .left-column,
+    .right-column {
+        overflow: auto;
+        :first-child {
+            margin-top: 0;
         }
-        .count {
-            margin-top: 10px;
-            margin-bottom: 10px;
-            font-size: 4em;
+    }
+    @media screen and (max-width: 750px) {
+        flex-direction: column;
+        .left-column,
+        .right-column {
+            width: 100%;
+        }
+        .right-column {
+            margin-left: 0;
+            flex-basis: unset;
+            max-height: unset !important;
         }
     }
 }
