@@ -1,6 +1,6 @@
 import path from 'path';
-
 import express from 'express';
+import forceHttps from 'express-force-https';
 
 try {
     require('./secrets.js');
@@ -16,6 +16,7 @@ const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
 const app = express();
 
 app.use(express.static(staticRoot));
+app.use(forceHttps);
 
 app.get('/api/mapData', (req, res, next) => {
     const {
