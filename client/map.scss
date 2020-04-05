@@ -1,6 +1,8 @@
 @import './shared.scss';
 
 .map-component {
+    @include card;
+    box-shadow: $base-shadow;
     width: 100%;
     height: 50vh;
     min-height: 400px;

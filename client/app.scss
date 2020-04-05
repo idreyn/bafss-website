@@ -21,6 +21,15 @@ p {
     line-height: 1.25em;
 }
 
+a {
+    color: $base-accent;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    &:hover {
+        background: rgba($base-accent, 0.05);
+    }
+}
+
 @mixin page-grid {
     display: grid;
     grid-template-columns: 1fr 550px 300px 1fr;
@@ -182,8 +191,10 @@ header {
     padding-bottom: 1em;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
-    background: rgba($base-accent, 0.1);
+    background: rgba($base-accent, 0.2);
     .ask {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
         margin-bottom: 0.5em;
         text-align: center;
         font-size: 1.2em;
@@ -200,7 +211,7 @@ header {
         margin-right: 10px;
     }
     .secondary-contribution-info {
-        color: #999;
+        opacity: 0.65;
         font-size: 0.75em;
         font-style: italic;
     }
@@ -216,7 +227,7 @@ header {
     text-decoration: none;
     box-shadow: $base-shadow;
     &:hover {
-        background: $lighter-accent;
+        background: darken($base-accent, 10%);
     }
 }
 
@@ -225,7 +236,9 @@ main {
 
     .left-column {
         grid-column: 2 / -2;
-        padding-right: 20px;
+        &:not(:last-child) {
+            padding-right: 20px;
+        }
     }
 
     .right-column {
@@ -253,6 +266,10 @@ main {
     }
     .response-marker-component,
     .donation-marker-component {
+        .total-donations {
+            display: none;
+        }
+        justify-content: center;
         display: inline-flex;
         vertical-align: middle;
         transform: scale(0.7);
