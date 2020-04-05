@@ -10,8 +10,8 @@ import Map from './Map';
 import EventStream from './EventStream';
 
 import './app.scss';
-import headerImage1 from '../static/images/er-1.png';
-import headerImage2 from '../static/images/er-2.png';
+import headerImage1 from '../static/images/header-thumb-1.png';
+import headerImage2 from '../static/images/header-thumb-2.png';
 
 // import myOtherImage from '../static/images/myOtherImage.png';
 // later on...
