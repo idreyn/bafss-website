@@ -157,7 +157,7 @@ const App = () => {
                             onExpand={setMapExpanded}
                             mapData={mapData}
                         />
-                        <h2>FAQs/About</h2>
+                        <h2>FAQ</h2>
                         <p>
                             <strong>
                                 What’s a face shield? Is it like a mask?
@@ -233,8 +233,8 @@ const App = () => {
                             trying to do my day job and a useful job at the same
                             time.
                             <br></br>
-                            But the helpers on the map -- regular Bay Area
-                            people -- are the real contributors.
+                            But the helpers on the map &mdash; regular Bay Area
+                            people &mdash; are the real contributors.
                         </p>
                         <p>
                             <strong>
