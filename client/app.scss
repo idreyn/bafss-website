@@ -95,14 +95,14 @@ header {
         padding: 5px;
         padding-left: 15px;
         padding-right: 15px;
-        color: $base-accent;
+        color: $secondary-accent;
         background: white;
         border-radius: 8px;
-        border: 3px solid $base-accent;
+        border: 3px solid $secondary-accent;
     }
     .background {
         position: absolute;
-        background: $base-accent;
+        background: $secondary-accent;
         top: 50%;
         left: 50%;
         width: 125px;
