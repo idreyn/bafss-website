@@ -204,8 +204,8 @@ const mapScopes = [
         key: 'continental-us',
         label: 'Continental US',
         position: {
-            center: [-98.35, 39.5],
-            zoom: 3.5,
+            center: [-96.5, 39.5],
+            zoom: 2.7,
         },
     },
 ];
