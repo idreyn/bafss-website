@@ -10,7 +10,10 @@ import { HtmlWrapper } from './htmlWrapper';
 import { getPageData } from './data';
 
 const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
+const manifest = require(path.join(staticRoot, 'manifest.json'));
 const app = express();
+
+console.log(manifest);
 
 app.use(forceHttps);
 app.use(express.static(staticRoot));
@@ -19,7 +22,7 @@ app.get('/', (req, res) => {
     return getPageData().then(pageData => {
         const appProps = { pageData, expandMap: false };
         return ReactDOMServer.renderToNodeStream(
-            <HtmlWrapper appProps={appProps}>
+            <HtmlWrapper appProps={appProps} manifest={manifest}>
                 <App {...appProps} />
             </HtmlWrapper>
         ).pipe(res);

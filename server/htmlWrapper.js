@@ -1,18 +1,19 @@
 import React from 'react';
 
-export const HtmlWrapper = ({ children, appProps }) => {
+export const HtmlWrapper = ({ children, appProps, manifest }) => {
     return (
         <html>
             <head>
                 <link
+                    href={manifest['main.css']}
+                    rel="stylesheet"
+                    type="text/css"
+                />
+                <link
                     href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css"
                     rel="stylesheet"
                 />
-                <link
-                    href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap"
-                    rel="stylesheet preload"
-                />
-                <meta charset="UTF-8" />
+                <meta charSet="UTF-8" />
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1"
@@ -26,7 +27,7 @@ export const HtmlWrapper = ({ children, appProps }) => {
                     data-json={JSON.stringify(appProps)}
                     id="app-props"
                 />
-                <script type="text/javascript" src="main.bundle.js" />
+                <script type="text/javascript" src={manifest['main.js']} />
             </body>
         </html>
     );

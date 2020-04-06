@@ -1,11 +1,13 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: './client/index.js',
     output: {
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js',
+        filename: '[name].[contenthash].bundle.js',
+        chunkFilename: '[name].[contenthash].bundle.js',
         publicPath: '/',
         path: path.resolve(__dirname, 'dist'),
     },
@@ -24,12 +26,16 @@ module.exports = {
             },
             {
                 test: /\.scss$/i,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
+                use: [MiniCSSExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             { test: /\.(png|svg|jpg|gif)$/, use: ['file-loader'] },
         ],
     },
     plugins: [
+        new ManifestPlugin(),
+        new MiniCSSExtractPlugin({
+            filename: '[name].[contenthash].bundle.css',
+        }),
         new CopyPlugin([
             {
                 from: path.resolve(__dirname, 'static/images'),
