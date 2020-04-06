@@ -95,9 +95,6 @@ const EventStream = props => {
         );
     };
 
-    // Some behavior we're implicitly relying on here -- Object.keys (and thus Object.values) will
-    // yield its integer keys in ascending order. Since `events` has unix timestamp keys, we can
-    // get a reverse timeline by looking at its Object.values in reverse order.
     const entriesInOrder = Object.values(events).reverse();
 
     return (
