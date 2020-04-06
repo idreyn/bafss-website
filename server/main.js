@@ -13,8 +13,6 @@ const staticRoot = path.normalize(path.join(__dirname, '..', 'dist'));
 const manifest = require(path.join(staticRoot, 'manifest.json'));
 const app = express();
 
-console.log(manifest);
-
 app.use(forceHttps);
 app.use(express.static(staticRoot));
 

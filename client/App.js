@@ -96,7 +96,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 rel="noopener noreferrer"
                                 href="https://forms.gle/pDxaSF5idGm15di98"
                             >
-                                Volunteer to help &rsaquo;
+                                Volunteer to help&nbsp;&rsaquo;
                             </a>
                         </div>
                         <div className="cta">
@@ -106,7 +106,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 rel="noopener noreferrer"
                                 href="https://www.paypal.me/bayareafaceshields"
                             >
-                                Donate via Paypal &rsaquo;
+                                Donate via Paypal&nbsp;&rsaquo;
                             </a>
                             <div className="secondary-contribution-info">
                                 or Venmo @Santani-Teng
@@ -130,16 +130,24 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             This map (click to zoom and interact) shows where:
                             <ul>
                                 <li>
-                                    {dummyResponseMarker} volunteers are
-                                    donating their{' '}
-                                    <span className="labor">labor</span>,{' '}
-                                    <span className="materials">materials</span>
-                                    , <span className="tools">tools</span>, and{' '}
-                                    <span className="funding">money</span>
+                                    {dummyResponseMarker}{' '}
+                                    <span>
+                                        volunteers are donating their{' '}
+                                        <span className="labor">labor</span>,{' '}
+                                        <span className="materials">
+                                            materials
+                                        </span>
+                                        , <span className="tools">tools</span>,
+                                        and{' '}
+                                        <span className="funding">money</span>
+                                    </span>
                                 </li>
                                 <li>
-                                    {dummyDonationMarker} we've donated face
-                                    shields to healthcare workers.
+                                    {dummyDonationMarker}{' '}
+                                    <span>
+                                        we've donated face shields to healthcare
+                                        workers
+                                    </span>
                                 </li>
                             </ul>
                         </div>

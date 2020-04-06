@@ -59,7 +59,7 @@ header {
     display: flex;
     align-items: center;
     p {
-        margin-inline-start: 15px;
+        margin-left: 15px;
         line-height: 1.25em;
         @include mobile {
             line-height: 1.1em;
@@ -67,6 +67,10 @@ header {
     }
     &.row-reverse {
         flex-direction: row-reverse;
+        p {
+            margin-left: 0;
+            margin-right: 15px;
+        }
     }
 }
 
@@ -195,15 +199,22 @@ main {
         list-style-type: none;
         padding: 0;
     }
+    li {
+        display: flex;
+        align-items: center;
+    }
     .response-marker-component,
     .donation-marker-component {
-        .total-donations {
-            display: none;
-        }
+        flex-shrink: 0;
         justify-content: center;
         display: inline-flex;
         vertical-align: middle;
         transform: scale(0.7);
+    }
+    .donation-marker-component {
+        .total-donations {
+            display: none;
+        }
     }
     .response-marker-component {
         pointer-events: none;
