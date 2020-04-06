@@ -5,4 +5,8 @@ import '../config';
 
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const appProps = JSON.parse(
+    document.getElementById('app-props').getAttribute('data-json')
+);
+
+ReactDOM.hydrate(<App {...appProps} />, document.getElementById('root'));

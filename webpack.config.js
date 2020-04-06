@@ -1,7 +1,14 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: './client/index.js',
+    output: {
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js',
+        publicPath: '/',
+        path: path.resolve(__dirname, 'dist'),
+    },
     module: {
         rules: [
             {
@@ -23,8 +30,11 @@ module.exports = {
         ],
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: 'static/template.html',
-        }),
+        new CopyPlugin([
+            {
+                from: path.resolve(__dirname, 'static/images'),
+                to: 'images',
+            },
+        ]),
     ],
 };

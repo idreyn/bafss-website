@@ -56,9 +56,7 @@ const processDonationRow = spreadsheetRow => {
 };
 
 export const getEvents = async () => {
-    const t0 = Date.now();
     const { donations, notes } = await getSpreadsheetRows();
-    console.log('got rows in', Date.now() - t0);
     return {
         donations: donations.filter(isRowVisible).map(processDonationRow),
         notes: notes.filter(isRowVisible).map(processNoteRow),

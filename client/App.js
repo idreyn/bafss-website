@@ -1,21 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Provider as RKProvider } from 'reakit/Provider';
 import * as boostrapSystem from 'reakit-system-bootstrap';
 
-import { useQueryParams, useColumnEqualizer } from './util';
+import { useColumnEqualizer } from './util';
 import { ResponseMarker } from './ResponseMarker';
 import { DonationMarker } from './DonationMarker';
-import { useMapData } from './useMapData';
 import Map from './Map';
 import EventStream from './EventStream';
 
 import './app.scss';
-import headerImage1 from '../static/images/header-thumb-1.png';
-import headerImage2 from '../static/images/header-thumb-2.png';
-
-// import myOtherImage from '../static/images/myOtherImage.png';
-// later on...
-// <img src={myOtherImage} />
 
 const dummyResponseMarker = (
     <ResponseMarker zip="" entries={[]} onSelectMarker={() => {}} />
@@ -37,11 +30,9 @@ const getDonationCount = donations => {
     return count;
 };
 
-const App = () => {
-    const { expandmap } = useQueryParams();
-    const [isMapExpanded, setMapExpanded] = useState(expandmap);
-    const mapData = useMapData();
+const App = ({ expandMap = false, pageData = {} }) => {
     const { leaderColumnRef, followerColumnRef } = useColumnEqualizer();
+    const { responses, donations } = pageData;
 
     const renderHeader = () => {
         return (
@@ -59,7 +50,7 @@ const App = () => {
             <div className="count-bubble">
                 <div className="background" />
                 <div className="count">
-                    {mapData ? getDonationCount(mapData.donations) : '...'}
+                    {pageData ? getDonationCount(pageData.donations) : '...'}
                 </div>
                 <div className="tag">shields donated</div>
             </div>
@@ -71,7 +62,7 @@ const App = () => {
             <div className="hero">
                 <div className="hero-pair">
                     <div className="photo-bubbles">
-                        <img src={headerImage1} />
+                        <img src="images/header-thumb-1.png" />
                     </div>
                     <p>
                         Health care workers around the Bay Area are low on
@@ -82,7 +73,7 @@ const App = () => {
                 </div>
                 <div className="hero-pair row-reverse">
                     <div className="photo-bubbles">
-                        <img src={headerImage2} />
+                        <img src="images/header-thumb-2.png" />
                     </div>
                     <p>
                         Face shields are invaluable equipment for doctors,
@@ -153,9 +144,8 @@ const App = () => {
                             </ul>
                         </div>
                         <Map
-                            expanded={isMapExpanded}
-                            onExpand={setMapExpanded}
-                            mapData={mapData}
+                            expanded={expandMap}
+                            mapData={{ responses, donations }}
                         />
                         <h2>FAQ</h2>
                         <p>
@@ -256,7 +246,7 @@ const App = () => {
                     </div>
                     <div className="right-column" ref={followerColumnRef}>
                         <h2>Latest news</h2>
-                        <EventStream events={mapData && mapData.events} />
+                        <EventStream events={pageData && pageData.events} />
                     </div>
                 </div>
             </main>

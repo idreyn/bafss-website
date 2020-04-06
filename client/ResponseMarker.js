@@ -7,11 +7,15 @@ import './responseMarker.scss';
 // keep this in sync with CSS
 const markerRadius = 23;
 
+const roundTo = (n, place = 3) => {
+    return Math.round(n * 10 ** place) / 10 ** place;
+};
+
 const polarToCartesian = (centerX, centerY, radius, thetaDeg) => {
     var thetaRad = (thetaDeg * Math.PI) / 180.0;
     return {
-        x: centerX + radius * Math.cos(thetaRad),
-        y: centerY + radius * Math.sin(thetaRad),
+        x: roundTo(centerX + radius * Math.cos(thetaRad)),
+        y: roundTo(centerY + radius * Math.sin(thetaRad)),
     };
 };
 

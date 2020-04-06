@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useQueryParams } from './util';
+import { getResponses } from './responses';
+import { getEvents } from './events';
 
 const groupItemsByField = (items, fieldName) => {
     const res = {};
@@ -38,29 +38,14 @@ const createEventsStream = (donations, notes) => {
     );
 };
 
-export const useMapData = () => {
-    const [responses, setResponses] = useState(null);
-    const [events, setEvents] = useState(null);
-    const { access } = useQueryParams();
-
-    useEffect(() => {
-        fetch(`/api/data?access=${access}`)
-            .then(res => res.json())
-            .then(({ responses, events }) => {
-                setResponses(responses);
-                setEvents(events);
-            });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    if (responses && events) {
-        const { donations, notes } = events;
-        return {
-            responses: groupItemsByField(responses, 'zip'),
-            donations: groupItemsByField(donations, 'locationId'),
-            events: createEventsStream(donations, notes),
-        };
-    }
-
-    return null;
+export const getPageData = async (showPrivateView = false) => {
+    const [responses, { donations, notes }] = await Promise.all([
+        getResponses(showPrivateView),
+        getEvents(),
+    ]);
+    return {
+        responses: groupItemsByField(responses, 'zip'),
+        donations: groupItemsByField(donations, 'locationId'),
+        events: createEventsStream(donations, notes),
+    };
 };

@@ -135,7 +135,7 @@ const DetailsPane = props => {
             >
                 &times;
             </button>
-            <TabList>
+            <TabList aria-label="Sort responses by">
                 <Tab {...tabs}>Overview</Tab>
                 <Tab {...tabs}>Individual responses</Tab>
             </TabList>
