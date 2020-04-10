@@ -3,6 +3,7 @@
 $vertical-spacing: 7px;
 
 .event-stream-component {
+    padding-left: 5px;
     .event-stream-date {
         .date-header {
             font-size: 0.7em;
@@ -35,14 +36,12 @@ $vertical-spacing: 7px;
         em {
             font-style: normal;
         }
-        img {
-            width: 100%;
-            box-shadow: $base-shadow;
-            @include card;
-        }
         .image-container {
             display: block;
             margin-top: $vertical-spacing;
+            &:hover {
+                background: none;
+            }
         }
         &:not(:last-child) {
             border-bottom: 1px solid #ccc;

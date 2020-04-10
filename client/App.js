@@ -32,7 +32,11 @@ const getDonationCount = donations => {
 };
 
 const App = ({ expandMap = false, pageData = {} }) => {
-    const { leaderColumnRef, followerColumnRef } = useColumnEqualizer();
+    const {
+        leaderColumnRef,
+        followerColumnRef,
+        equalizeColumns,
+    } = useColumnEqualizer();
     const { responses, donations } = pageData;
 
     const renderHeader = () => {
@@ -153,6 +157,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </ul>
                         </div>
                         <Map
+                            onMount={equalizeColumns}
                             expanded={expandMap}
                             mapData={{ responses, donations }}
                         />

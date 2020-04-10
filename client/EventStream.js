@@ -1,6 +1,8 @@
 import React from 'react';
 import pluralize from 'pluralize';
 
+import ImageCard from './ImageCard';
+
 import './eventStream.scss';
 
 const renderDonationEventText = donation => {
@@ -57,7 +59,7 @@ const EventItem = props => {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <img src={imageUrl} />
+                    <ImageCard src={imageUrl} />
                 </a>
             )}
         </div>

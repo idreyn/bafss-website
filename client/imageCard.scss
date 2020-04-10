@@ -1,0 +1,18 @@
+@import './shared.scss';
+
+.image-card-component {
+    @include card;
+    overflow: hidden;
+    box-shadow: $base-shadow;
+    width: 100%;
+    background: #eee;
+
+    img {
+        opacity: 0;
+        width: 100%;
+        transition: opacity 0.2s;
+        &.loaded {
+            opacity: 1;
+        }
+    }
+}

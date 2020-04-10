@@ -26,7 +26,7 @@ const mapScopes = [
 ];
 
 const Map = props => {
-    const { expanded, mapData } = props;
+    const { expanded, mapData, onMount } = props;
     const [openMarker, setOpenMarker] = useState(null);
     const [currentScope, setCurrentScope] = useState(mapScopes[0]);
 
@@ -35,6 +35,7 @@ const Map = props => {
         expanded,
         scope: currentScope,
         onSelectMarker: setOpenMarker,
+        onMount,
     });
 
     return (
