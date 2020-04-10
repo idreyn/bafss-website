@@ -38,6 +38,7 @@ a {
         background: rgba($base-accent, 0.05);
     }
 }
+
 header {
     .header-and-counter {
         display: flex;
@@ -184,7 +185,7 @@ header {
 }
 
 main {
-    width: 850px;
+    width: 860px;
     margin: 0 auto;
     max-width: 92%;
 }
@@ -245,7 +246,7 @@ main {
     display: flex;
     .right-column {
         margin-left: 20px;
-        width: 300px;
+        width: 310px;
         min-width: 250px;
         flex-basis: 0;
         flex-grow: 1;
