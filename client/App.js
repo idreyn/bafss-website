@@ -5,6 +5,7 @@ import * as boostrapSystem from 'reakit-system-bootstrap';
 import { useColumnEqualizer } from './util';
 import { ResponseMarker } from './ResponseMarker';
 import { DonationMarker } from './DonationMarker';
+import BalanceChart from './charts/BalanceChart';
 import EventStream from './EventStream';
 import Footer from './Footer';
 import Map from './Map';
@@ -32,12 +33,12 @@ const getDonationCount = donations => {
 };
 
 const App = ({ expandMap = false, pageData = {} }) => {
+    const { responses, donations, chartData } = pageData;
     const {
         leaderColumnRef,
         followerColumnRef,
         equalizeColumns,
     } = useColumnEqualizer();
-    const { responses, donations } = pageData;
 
     const renderHeader = () => {
         return (
@@ -143,6 +144,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                 {renderHero()}
                 <div className="two-column">
                     <div className="left-column" ref={leaderColumnRef}>
+                        <h2>...Finances?</h2>
+                        <BalanceChart balanceData={chartData.balance} />
                         <h2>Activity map</h2>
                         <div className="map-explainer">
                             This map (click to zoom and interact) shows where:

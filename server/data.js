@@ -90,8 +90,6 @@ const reduceTimeSeriesData = (
                 previousDateValue,
             } = state;
 
-            console.log('dV', dateValue);
-
             const nextRunningTotal = subtotalReducer(
                 runningTotal,
                 entryForDate
@@ -144,7 +142,10 @@ const getBalanceChartData = balance => {
     });
 
     const sumOfAmounts = entries =>
-        entries.reduce((subtotal, { amount }) => subtotal + amount, 0);
+        entries.reduce(
+            (subtotal, { amount }) => subtotal + Math.round(amount),
+            0
+        );
 
     const subtotalReducer = (currentSubtotal, valuesToday) => {
         const {
