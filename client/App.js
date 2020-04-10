@@ -145,7 +145,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 <li>
                                     {dummyDonationMarker}{' '}
                                     <span>
-                                        we've donated face shields to healthcare
+                                        we've donated face shields or other PPE to healthcare
                                         workers
                                     </span>
                                 </li>
@@ -171,17 +171,20 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </strong>
                             <br></br>
                             Yes. Personal protective equipment (PPE) is in short
-                            supply, and there is no clear resupply chain in
-                            place currently.
+                            supply, and there is no clear resupply chain currently in
+                            place.
                             <br></br>
                             <a href="https://megaphone.link/SFO2957716016">
-                                SF Chronicle on equipment shortages
+                                SF Chronicle podcast on equipment shortages
                             </a>
                             <br></br>
                             <a href="khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/">
                                 Kaiser Health News: From the front lines of the
                                 COVID-19 battle
                             </a>
+                            <br></br>
+                            Text from an ER physician colleague describing the shortage
+                            <img src="images/20200321_YC_texts.png"></img>
                         </p>
                         <p>
                             <strong>
@@ -193,7 +196,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <a href="https://www.budmen.com">
                                 Budmen Industries
                             </a>
-                            .
+                            . The design has been approved for use in a clinical setting by the National Institutes of Health.
                         </p>
                         <p>
                             <strong>Is anyone else using them?</strong>
@@ -205,6 +208,12 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 similar call
                             </a>{' '}
                             with the same design.
+                            <br></br>
+                            Other maker groups are producing this and similar designs; it is among the models featured in the 
+                            <a href="https://emergencydesigncollective.com/field-notes/ppe-playbook">
+                                Emergency Design Collective's PPE Playbook
+                            </a>
+                            .
                         </p>
                         <p>
                             <strong>
@@ -218,7 +227,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             >
                                 asked for this exact kind of work
                             </a>
-                            .
+                            . Our recipients have been extremely grateful and clear about the need for a stopgap measure before the normal supply chain is restored.
                         </p>
                         <p>
                             {' '}
@@ -231,8 +240,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             trying to do my day job and a useful job at the same
                             time.
                             <br></br>
-                            But the helpers on the map &mdash; regular Bay Area
-                            people &mdash; are the real contributors.
+                            But the helpers on the map &mdash; regular Bay Area (and elsewhere)
+                            people &mdash; are the real contributors. BAFSS comprises dozens of people volunteering time and resources in this group effort: 3d-printing visors, cutting and shaping plastic sheets, assembling components, making deliveries, and fueling the process with donations. 
                         </p>
                         <p>
                             <strong>
@@ -249,7 +258,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 If I chip in, what’s the money going toward?
                             </strong>
                             <br></br>
-                            Parts, printing costs, deliveries.
+                            Parts, printing costs, deliveries, shipping.
                         </p>
                     </div>
                     <div className="right-column" ref={followerColumnRef}>
