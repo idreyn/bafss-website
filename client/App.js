@@ -183,7 +183,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 COVID-19 battle
                             </a>
                             <br></br>
-                            Text from an ER physician colleague describing the shortage
+                            Text from an ER physician colleague describing the shortage:
+                            <br></br>
                             <img src="images/20200321_YC_texts.png"></img>
                         </p>
                         <p>
