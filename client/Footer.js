@@ -23,7 +23,7 @@ const Footer = () => {
             <div className="content">
                 Made with 😷 at{' '}
                 <a href="https://github.com/idreyn/bafss-website">
-                    {ghIcon} idreyn/bafss
+                    {ghIcon} idreyn/bafss-website
                 </a>
             </div>
             <div className="beam" />
