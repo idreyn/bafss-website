@@ -28,6 +28,12 @@ $vertical-spacing: 7px;
                 margin-left: 4px;
             }
         }
+        &:last-child {
+            .event-item:last-child {
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
     }
 
     .event-item {
