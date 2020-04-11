@@ -17,8 +17,9 @@ app.use(forceHttps);
 app.use(express.static(staticRoot));
 
 app.get('/', (req, res) => {
-    return getPageData().then(pageData => {
-        const appProps = { pageData, expandMap: false };
+    const hasAdminAccess = req.query.access === process.env.ADMIN_ACCESS_CODE;
+    return getPageData(hasAdminAccess).then(pageData => {
+        const appProps = { pageData, expandMap: req.query.expandmap };
         return ReactDOMServer.renderToNodeStream(
             <HtmlWrapper appProps={appProps} manifest={manifest}>
                 <App {...appProps} />
