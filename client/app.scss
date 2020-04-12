@@ -149,6 +149,8 @@ header {
 .cta-links {
     display: flex;
     justify-content: center;
+    max-width: 860px;
+    margin: 0 auto;
     .cta {
         text-align: center;
         flex-basis: 100%;
