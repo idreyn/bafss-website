@@ -99,7 +99,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 className="cta-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href="https://forms.gle/pDxaSF5idGm15di98"
+                                href="https://bit.ly/bay-area-face-shield-volunteer"
                             >
                                 Volunteer to help&nbsp;&rsaquo;
                             </a>
@@ -113,8 +113,21 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             >
                                 Donate via Paypal&nbsp;&rsaquo;
                             </a>
-                            <div className="secondary-contribution-info">
+                            <div className="cta-secondary-info">
                                 or Venmo @Santani-Teng
+                            </div>
+                        </div>
+                        <div className="cta">
+                            <a
+                                className="cta-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://bit.ly/bay-area-face-shield-request"
+                            >
+                                Request shields&nbsp;&rsaquo;
+                            </a>
+                            <div className="cta-secondary-info">
+                                for frontline medical workers
                             </div>
                         </div>
                     </div>
