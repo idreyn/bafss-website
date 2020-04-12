@@ -7,7 +7,7 @@
     "heroku-prebuild": "npm install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve-prod": "node server/init.js",
-    "serve-dev": "NODE_ENV=development nodemon -r --watch server esm server/init.js",
+    "serve-dev": "NODE_ENV=development nodemon -r --watch server --watch dist --watch static esm server/init.js",
     "build-dev": "webpack --watch --mode development",
     "start": "concurrently npm:build-dev npm:serve-dev",
     "postinstall": "webpack --mode production",

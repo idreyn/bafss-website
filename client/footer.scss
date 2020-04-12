@@ -1,0 +1,36 @@
+$footer-color: #ccc;
+
+.footer-component {
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    color: $footer-color;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    .beam {
+        flex-grow: 1;
+        height: 1px;
+        background: $footer-color;
+    }
+
+    .content {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .github-icon {
+        height: 0.8em;
+        fill: $footer-color;
+    }
+
+    a {
+        color: darken($footer-color, 10%);
+        &:hover {
+            background: none;
+            color: darken($footer-color, 20%);
+        }
+    }
+}

@@ -109,7 +109,13 @@ const addDonationMarkerToMap = (mapboxgl, map, { donations }) => {
     return { remove: () => markerPromise.then(marker => marker.remove()) };
 };
 
-export const useMap = ({ scope, mapData, onSelectMarker, expanded }) => {
+export const useMap = ({
+    scope,
+    mapData,
+    onSelectMarker,
+    expanded,
+    onMount,
+}) => {
     const mapboxgl = useMapboxgl();
     const [domElement, setDomElement] = useState(null);
     const [map, setMap] = useState(null);
@@ -193,6 +199,7 @@ export const useMap = ({ scope, mapData, onSelectMarker, expanded }) => {
                 });
                 addMarkersToMap(map, mapData);
                 setMap(map);
+                onMount();
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

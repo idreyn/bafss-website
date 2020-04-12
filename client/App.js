@@ -5,8 +5,9 @@ import * as boostrapSystem from 'reakit-system-bootstrap';
 import { useColumnEqualizer } from './util';
 import { ResponseMarker } from './ResponseMarker';
 import { DonationMarker } from './DonationMarker';
-import Map from './Map';
 import EventStream from './EventStream';
+import Footer from './Footer';
+import Map from './Map';
 
 import './app.scss';
 
@@ -31,7 +32,11 @@ const getDonationCount = donations => {
 };
 
 const App = ({ expandMap = false, pageData = {} }) => {
-    const { leaderColumnRef, followerColumnRef } = useColumnEqualizer();
+    const {
+        leaderColumnRef,
+        followerColumnRef,
+        equalizeColumns,
+    } = useColumnEqualizer();
     const { responses, donations } = pageData;
 
     const renderHeader = () => {
@@ -145,13 +150,14 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 <li>
                                     {dummyDonationMarker}{' '}
                                     <span>
-                                        we've donated face shields or other PPE to healthcare
-                                        workers
+                                        we've donated face shields or other PPE
+                                        to healthcare workers
                                     </span>
                                 </li>
                             </ul>
                         </div>
                         <Map
+                            onMount={equalizeColumns}
                             expanded={expandMap}
                             mapData={{ responses, donations }}
                         />
@@ -160,24 +166,24 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <strong>
                                 What’s a face shield? Is it like a mask?
                             </strong>
-                            <br></br>A face shield is not a mask that fits
-                            snugly over the nose and mouth. It is a clear window
-                            that protects the whole face from droplets and
-                            sprays that can carry infection.
+                            <br />A face shield is not a mask that fits snugly
+                            over the nose and mouth. It is a clear window that
+                            protects the whole face from droplets and sprays
+                            that can carry infection.
                         </p>
                         <p>
                             <strong>
                                 Is a face-shield shortage really a problem here?
                             </strong>
-                            <br></br>
+                            <br />
                             Yes. Personal protective equipment (PPE) is in short
-                            supply, and there is no clear resupply chain currently in
-                            place.
-                            <br></br>
+                            supply, and there is no clear resupply chain
+                            currently in place.
+                            <br />
                             <a href="https://megaphone.link/SFO2957716016">
                                 SF Chronicle podcast on equipment shortages
                             </a>
-                            <br></br>
+                            <br />
                             <a href="khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/">
                                 Kaiser Health News: From the front lines of the
                                 COVID-19 battle
@@ -191,17 +197,18 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <strong>
                                 Where are these face shields coming from?
                             </strong>
-                            <br></br>
+                            <br />
                             They are a 3d-printed design made and downloadable
                             from{' '}
                             <a href="https://www.budmen.com">
                                 Budmen Industries
                             </a>
-                            . The design has been approved for use in a clinical setting by the National Institutes of Health.
+                            . The design has been approved for use in a clinical
+                            setting by the National Institutes of Health.
                         </p>
                         <p>
                             <strong>Is anyone else using them?</strong>
-                            <br></br>
+                            <br />
                             Yes, the idea was inspired by{' '}
                             <a href="https://www.nbcboston.com/news/coronavirus/mgh-desperately-needs-supplies-president-says/2094292/">
                                 Massachusetts General Hospital and Partners
@@ -209,8 +216,9 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 similar call
                             </a>{' '}
                             with the same design.
-                            <br></br>
-                            Other maker groups are producing this and similar designs; it is among the models featured in the 
+                            <br />
+                            Other maker groups are producing this and similar
+                            designs; it is among the models featured in the{' '}
                             <a href="https://emergencydesigncollective.com/field-notes/ppe-playbook">
                                 Emergency Design Collective's PPE Playbook
                             </a>
@@ -220,7 +228,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <strong>
                                 Do local hospitals actually want DIY help?
                             </strong>
-                            <br></br>
+                            <br />
                             Yes, the medical community has{' '}
                             <a
                                 href="
@@ -228,28 +236,33 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             >
                                 asked for this exact kind of work
                             </a>
-                            . Our recipients have been extremely grateful and clear about the need for a stopgap measure before the normal supply chain is restored.
+                            . Our recipients have been extremely grateful and
+                            clear about the need for a stopgap measure before
+                            the normal supply chain is restored.
                         </p>
                         <p>
                             {' '}
                             <strong>Who is organizing this?</strong>
-                            <br></br>
+                            <br />
                             I’m a{' '}
                             <a href="https://www.ski.org/users/santani-teng">
                                 scientist in San Francisco
                             </a>{' '}
                             trying to do my day job and a useful job at the same
-                            time.
-                            <br></br>
-                            But the helpers on the map &mdash; regular Bay Area (and elsewhere)
-                            people &mdash; are the real contributors. BAFSS comprises dozens of people volunteering time and resources in this group effort: 3d-printing visors, cutting and shaping plastic sheets, assembling components, making deliveries, and fueling the process with donations. 
+                            time. But the helpers on the map &mdash; regular Bay
+                            Area (and elsewhere) people &mdash; are the real
+                            contributors. BAFSS comprises dozens of people
+                            volunteering time and resources in this group
+                            effort: 3D-printing visors, cutting and shaping
+                            plastic sheets, assembling components, making
+                            deliveries, and fueling the process with donations.
                         </p>
                         <p>
                             <strong>
                                 Is this one of those horrifying scams to prey on
                                 people's helpful nature? Is it dangerous?
                             </strong>
-                            <br></br>
+                            <br />
                             No. You can help without donating money or breaking
                             social distancing guidelines. We wipe everything
                             down and deliver materials with no-contact methods.
@@ -258,7 +271,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <strong>
                                 If I chip in, what’s the money going toward?
                             </strong>
-                            <br></br>
+                            <br />
                             Parts, printing costs, deliveries, shipping.
                         </p>
                     </div>
@@ -268,6 +281,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                     </div>
                 </div>
             </main>
+            <Footer />
         </RKProvider>
     );
 };
