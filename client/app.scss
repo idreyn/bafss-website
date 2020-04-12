@@ -151,6 +151,17 @@ header {
     justify-content: center;
     .cta {
         text-align: center;
+        flex-basis: 100%;
+        @include mobile {
+            display: flex;
+            align-items: center;
+            .cta-link {
+                flex-shrink: 0;
+            }
+            .cta-secondary-info {
+                text-align: left;
+            }
+        }
     }
     .cta:not(:last-child) {
         margin-right: 10px;
@@ -159,6 +170,9 @@ header {
         opacity: 0.65;
         font-size: 0.75em;
         font-style: italic;
+    }
+    @include mobile {
+        flex-direction: column;
     }
 }
 

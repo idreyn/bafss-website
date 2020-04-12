@@ -116,6 +116,10 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </a>
                             <div className="cta-secondary-info">
                                 or Venmo @Santani-Teng
+                                <br />
+                                <a href="#finances">
+                                    More on how your money is used
+                                </a>
                             </div>
                         </div>
                         <div className="cta">
@@ -128,7 +132,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 Request shields&nbsp;&rsaquo;
                             </a>
                             <div className="cta-secondary-info">
-                                for frontline medical workers
+                                for frontline medical workers like doctors,
+                                nurses, and pharmacists
                             </div>
                         </div>
                     </div>
