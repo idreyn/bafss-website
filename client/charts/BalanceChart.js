@@ -13,14 +13,14 @@ const getChartData = balanceData => {
             {
                 label: 'Donations',
                 data: donations,
-                borderColor: 'green',
-                backgroundColor: `rgba(0,255,0,0.1)`,
+                borderColor: 'rgba(61, 219, 103)',
+                backgroundColor: `rgba(61, 219, 103, 0.1)`,
             },
             {
                 label: 'Expenses',
                 data: expenses,
-                borderColor: 'red',
-                backgroundColor: `rgba(255,0,0,0.1)`,
+                borderColor: 'rgb(219, 62, 68)',
+                backgroundColor: `rgba(219, 62, 68, 0.1)`,
             },
         ],
     };

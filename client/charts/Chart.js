@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ChartJs from 'chart.js';
 
 import './chart.scss';
 
@@ -16,9 +15,19 @@ const Chart = props => {
     } = props;
 
     const [canvas, setCanvas] = useState(null);
+    const [ChartJs, setChartJs] = useState(null);
 
     useEffect(() => {
-        if (canvas) {
+        import(/* webpackChunkName: "chart-js" */ 'chart.js').then(
+            ({ default: theChartJs }) => {
+                // theChartJs is itself a function so we have to set state using a callback.
+                setChartJs(() => theChartJs);
+            }
+        );
+    }, []);
+
+    useEffect(() => {
+        if (canvas && ChartJs) {
             const chart = new ChartJs(canvas.getContext('2d'), {
                 type: 'line',
                 data: {
@@ -30,7 +39,7 @@ const Chart = props => {
             return () => chart.destroy();
         }
         return () => {};
-    }, [canvas, datasets, labels, chartOptions]);
+    }, [canvas, datasets, labels, chartOptions, ChartJs]);
 
     return (
         <div className="chart-component">

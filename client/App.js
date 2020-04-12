@@ -144,8 +144,6 @@ const App = ({ expandMap = false, pageData = {} }) => {
                 {renderHero()}
                 <div className="two-column">
                     <div className="left-column" ref={leaderColumnRef}>
-                        <h2>...Finances?</h2>
-                        <BalanceChart balanceData={chartData.balance} />
                         <h2>Activity map</h2>
                         <div className="map-explainer">
                             This map (click to zoom and interact) shows where:
@@ -177,6 +175,23 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             expanded={expandMap}
                             mapData={{ responses, donations }}
                         />
+                        <h2 id="finances">Our finances</h2>
+                        <p>
+                            This chart shows a live view of how much money we've
+                            received from donations, and how much money we've
+                            spent. These totals account for many shields in
+                            various stages of assembly that have not yet been
+                            delivered.
+                        </p>
+                        <BalanceChart balanceData={chartData.balance} />
+                        <p>
+                            We use your donations to pay for materials sourced
+                            from everywhere we can find, from online retailers
+                            to neighborhood grocery stores. We deliver in
+                            batches and expedite shipping whenever possible, as
+                            days count during this emergency. We don't
+                            compensate ourselves for time or labor.
+                        </p>
                         <h2>FAQ</h2>
                         <p>
                             <strong>
