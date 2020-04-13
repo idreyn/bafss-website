@@ -5,6 +5,7 @@ import * as boostrapSystem from 'reakit-system-bootstrap';
 import { useColumnEqualizer } from './util';
 import { ResponseMarker } from './ResponseMarker';
 import { DonationMarker } from './DonationMarker';
+import BalanceChart from './charts/BalanceChart';
 import EventStream from './EventStream';
 import Footer from './Footer';
 import Map from './Map';
@@ -32,12 +33,12 @@ const getDonationCount = donations => {
 };
 
 const App = ({ expandMap = false, pageData = {} }) => {
+    const { responses, donations, chartData } = pageData;
     const {
         leaderColumnRef,
         followerColumnRef,
         equalizeColumns,
     } = useColumnEqualizer();
-    const { responses, donations } = pageData;
 
     const renderHeader = () => {
         return (
@@ -99,7 +100,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 className="cta-link"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href="https://forms.gle/pDxaSF5idGm15di98"
+                                href="https://bit.ly/bay-area-face-shield-volunteer"
                             >
                                 Volunteer to help&nbsp;&rsaquo;
                             </a>
@@ -113,8 +114,26 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             >
                                 Donate via Paypal&nbsp;&rsaquo;
                             </a>
-                            <div className="secondary-contribution-info">
+                            <div className="cta-secondary-info">
                                 or Venmo @Santani-Teng
+                                <br />
+                                <a href="#finances">
+                                    More on how your money is used
+                                </a>
+                            </div>
+                        </div>
+                        <div className="cta">
+                            <a
+                                className="cta-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href="https://bit.ly/bay-area-face-shield-request"
+                            >
+                                Request shields&nbsp;&rsaquo;
+                            </a>
+                            <div className="cta-secondary-info">
+                                for frontline medical workers like doctors,
+                                nurses, and pharmacists
                             </div>
                         </div>
                     </div>
@@ -161,6 +180,23 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             expanded={expandMap}
                             mapData={{ responses, donations }}
                         />
+                        <h2 id="finances">Our finances</h2>
+                        <p>
+                            This chart shows a live view of how much money we've
+                            received from donations, and how much money we've
+                            spent. These totals account for many shields in
+                            various stages of assembly that have not yet been
+                            delivered.
+                        </p>
+                        <BalanceChart balanceData={chartData.balance} />
+                        <p>
+                            We use your donations to pay for materials sourced
+                            from everywhere we can find, from online retailers
+                            to neighborhood grocery stores. We deliver in
+                            batches and expedite shipping whenever possible, as
+                            days count during this emergency. We don't
+                            compensate ourselves for time or labor.
+                        </p>
                         <h2>FAQ</h2>
                         <p>
                             <strong>

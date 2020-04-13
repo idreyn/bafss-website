@@ -21,3 +21,23 @@ export const cache = (fn, lifetimeSeconds) => {
         return lastValue;
     };
 };
+
+export const preemptiveCache = (fn, lifetimeSeconds) => {
+    let latestValue = null;
+
+    const updateValue = async () => {
+        const newValue = await fn();
+        latestValue = newValue;
+        return newValue;
+    };
+
+    const initialValuePromise = updateValue();
+    setInterval(updateValue, lifetimeSeconds * 1000);
+
+    return async () => {
+        if (!latestValue) {
+            await initialValuePromise;
+        }
+        return latestValue;
+    };
+};

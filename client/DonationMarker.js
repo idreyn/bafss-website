@@ -6,10 +6,9 @@ import './donationMarker.scss';
 
 export const DonationMarker = props => {
     const { donations } = props;
-    const grandTotalDonations = donations.reduce(
-        (sum, next) => sum + next.totalDonations,
-        0
-    );
+    const grandTotalDonations = donations
+        .filter(donation => donation.donationType === 'face shields')
+        .reduce((sum, next) => sum + next.totalDonations, 0);
     return (
         <div className="donation-marker-component">
             <div className="caduceus" />

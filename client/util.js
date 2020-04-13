@@ -18,13 +18,12 @@ export const useColumnEqualizer = () => {
         if (leaderColumn && followerColumn) {
             const leaderHeight = getEffectiveHeight(leaderColumn);
             followerColumn.style.maxHeight = `${leaderHeight}px`;
-            console.log(followerColumn.style.maxHeight);
             return () => {
                 followerColumn.style.maxHeight = '';
             };
         }
         return () => {};
-    }, [leaderColumn, followerColumn]);
+    }, [leaderColumn, followerColumn, forceRerender]);
 
     return {
         leaderColumnRef: setLeaderColumn,
