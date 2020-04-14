@@ -155,6 +155,7 @@ header {
         text-align: center;
         flex-basis: 100%;
         @include mobile {
+            flex-basis: unset;
             display: flex;
             align-items: center;
             .cta-link {
