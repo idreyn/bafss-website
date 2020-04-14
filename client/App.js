@@ -224,9 +224,9 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 Kaiser Health News: From the front lines of the
                                 COVID-19 battle
                             </a>
-                            <br />
-                            Text from an ER physician colleague describing the
-                            shortage
+                            <br></br>
+                            Text from an ER physician colleague describing the shortage:
+                            <br></br>
                             <img src="images/20200321_YC_texts.png"></img>
                         </p>
                         <p>
