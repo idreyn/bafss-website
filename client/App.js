@@ -191,8 +191,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         <BalanceChart balanceData={chartData.balance} />
                         <p>
                             <strong>
-                        How we use your donations
-                        </strong>
+                                How we use your donations
+                            </strong>
                         <br></br>
                             We use your donations to pay for materials sourced
                             from everywhere we can find, from online retailers
@@ -202,9 +202,11 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             compensate ourselves for time or labor.
                         </p>
                         <p>
-                            <strong>How far your donation goes</strong>
+                            <strong>
+                                How far your donation goes
+                            </strong>
                             <br>
-                            </br>Because our supply chain is very unpredictable, it's difficult to estimate costs as one could for a less urgent operation. But a basic estimate, a $50 donation pays for:
+                            </br>Because our supply chain is very unpredictable, it's difficult to estimate costs as one could for a less urgent operation. But as a basic estimate, a $50 donation pays for:
                             <ul>
                                 <li>
                                     about 10 full shields' worth of various raw materials, OR
