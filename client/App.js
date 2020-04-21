@@ -248,7 +248,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 SF Chronicle podcast on equipment shortages
                             </a>
                             <br />
-                            <a href="khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/">
+                            <a href="https://khn.org/news/a-view-from-the-frontlines-of-californias-covid-19-battle/">
                                 Kaiser Health News: From the front lines of the
                                 COVID-19 battle
                             </a>
