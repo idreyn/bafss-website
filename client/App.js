@@ -190,10 +190,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         </p>
                         <BalanceChart balanceData={chartData.balance} />
                         <p>
-                            <strong>
-                                How we use your donations
-                            </strong>
-                        <br></br>
+                            <strong>How we use your donations</strong>
+                            <br></br>
                             We use your donations to pay for materials sourced
                             from everywhere we can find, from online retailers
                             to neighborhood grocery stores. We deliver in
@@ -202,29 +200,34 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             compensate ourselves for time or labor.
                         </p>
                         <p>
-                            <strong>
-                                How far your donation goes
-                            </strong>
-                            <br>
-                            </br>Because our supply chain is very unpredictable, it's difficult to estimate costs as one could for a less urgent operation. But as a basic estimate, a $50 donation pays for:
-                            <ul>
-                                <li>
-                                    about 10 full shields' worth of various raw materials, OR
-                                </li>
-                                <li>
-                                    a big chunk of a few of our bulk orders, OR
-                                </li>
-                                <li>
-                                    about 400 miles' worth of gas for delivery logistics around the Bay Area, OR
-                                </li>
-                                <li>
-                                    upgrading a package to overnight shipping (each day a staff operates unprotected or underprotected carries a significant health risk and obvious economic risk), OR
-                                </li>
-                                <li>
-                                    several simple tools, like cutters, hole punches, glue, etc. to expedite the assembly process.
-                                </li>
-                            </ul>
+                            <strong>How far your donation goes</strong>
+                            <br></br>Because our supply chain is very
+                            unpredictable, it's difficult to estimate costs as
+                            one could for a less urgent operation. But as a
+                            basic estimate, a $50 donation pays for:
                         </p>
+                        <ul>
+                            <li>
+                                about 10 full shields' worth of various raw
+                                materials, OR
+                            </li>
+                            <li>a big chunk of a few of our bulk orders, OR</li>
+                            <li>
+                                about 400 miles' worth of gas for delivery
+                                logistics around the Bay Area, OR
+                            </li>
+                            <li>
+                                upgrading a package to overnight shipping (each
+                                day a staff operates unprotected or
+                                underprotected carries a significant health risk
+                                and obvious economic risk), OR
+                            </li>
+                            <li>
+                                several simple tools, like cutters, hole
+                                punches, glue, etc. to expedite the assembly
+                                process.
+                            </li>
+                        </ul>
                         <h2>FAQ</h2>
                         <p>
                             <strong>
@@ -242,7 +245,11 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <br />
                             Yes. Personal protective equipment (PPE) is in short
                             supply, and there is no clear resupply chain
-                            currently in place. Even large hospitals are struggling, and as best we can tell from our recipients in the field, small providers (non-ER, private practices, pharmacies, etc.) are not even on the radar of the resupply chains.
+                            currently in place. Even large hospitals are
+                            struggling, and as best we can tell from our
+                            recipients in the field, small providers (non-ER,
+                            private practices, pharmacies, etc.) are not even on
+                            the radar of the resupply chains.
                             <br />
                             <a href="https://megaphone.link/SFO2957716016">
                                 SF Chronicle podcast on equipment shortages
@@ -253,7 +260,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 COVID-19 battle
                             </a>
                             <br></br>
-                            Text from an ER physician colleague describing the shortage:
+                            Text from an ER physician colleague describing the
+                            shortage:
                             <br></br>
                             <img src="images/20200321_YC_texts.png"></img>
                         </p>
@@ -267,12 +275,16 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <a href="https://www.budmen.com">
                                 Budmen Industries
                             </a>
-                            . The design has been 
+                            . The design has been
                             <a href="https://3dprint.nih.gov/discover/3dpx-013309">
-                                approved for use in a clinical setting by the National Institutes of Health.
+                                approved for use in a clinical setting by the
+                                National Institutes of Health.
                             </a>
                             <br></br>
-                            The shields are reusable, with the visors and clear sheets independently replaceable. We have heard from multiple recipients that these are preferable to their normally assigned PPE!
+                            The shields are reusable, with the visors and clear
+                            sheets independently replaceable. We have heard from
+                            multiple recipients that these are preferable to
+                            their normally assigned PPE!
                         </p>
                         <p>
                             <strong>Is anyone else using them?</strong>
@@ -285,8 +297,9 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </a>{' '}
                             with the same design.
                             <br />
-                            Now, other maker groups are producing this and similar
-                            designs here in the Bay Area; it is among the models featured in the{' '}
+                            Now, other maker groups are producing this and
+                            similar designs here in the Bay Area; it is among
+                            the models featured in the{' '}
                             <a href="https://emergencydesigncollective.com/field-notes/ppe-playbook">
                                 Emergency Design Collective's PPE Playbook
                             </a>
@@ -298,9 +311,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </strong>
                             <br />
                             Yes, the medical community has{' '}
-                            <a
-                                href="https://twitter.com/vmcfoundation/status/1240707396147638272"
-                            >
+                            <a href="https://twitter.com/vmcfoundation/status/1240707396147638272">
                                 asked for this exact kind of work
                             </a>
                             . Our recipients have been extremely grateful and
@@ -339,7 +350,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 If I chip in, what’s the money going toward?
                             </strong>
                             <br />
-                            Parts, printing costs, deliveries, shipping, as detailed above.
+                            Parts, printing costs, deliveries, shipping, as
+                            detailed above.
                         </p>
                     </div>
                     <div className="right-column" ref={followerColumnRef}>
