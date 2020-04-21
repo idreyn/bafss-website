@@ -261,7 +261,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <strong>
                                 Where are these face shields coming from?
                             </strong>
-                            <br />
+                            <br></br>
                             They are a 3d-printed design made and downloadable
                             from{' '}
                             <a href="https://www.budmen.com">
@@ -299,8 +299,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <br />
                             Yes, the medical community has{' '}
                             <a
-                                href="
-                    https://twitter.com/vmcfoundation/status/1240707396147638272"
+                                href="https://twitter.com/vmcfoundation/status/1240707396147638272"
                             >
                                 asked for this exact kind of work
                             </a>
