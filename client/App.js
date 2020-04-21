@@ -267,7 +267,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             <a href="https://www.budmen.com">
                                 Budmen Industries
                             </a>
-                            . The design has been 
+                            . The design has been{' '}
                             <a href="https://3dprint.nih.gov/discover/3dpx-013309">
                                 approved for use in a clinical setting by the National Institutes of Health.
                             </a>
