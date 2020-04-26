@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+
+import { useImageLoader } from './util';
 
 import './imageCard.scss';
 
 const ImageCard = props => {
     const { src } = props;
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        const img = new Image();
-        img.onload = () => setIsLoaded(true);
-        img.src = src;
-        return () => setIsLoaded(false);
-    }, [src]);
+    const isLoaded = useImageLoader(src);
 
     return (
         <div className="image-card-component">

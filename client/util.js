@@ -31,3 +31,16 @@ export const useColumnEqualizer = () => {
         equalizeColumns: () => setForceRerender(val => val + 1),
     };
 };
+
+export const useImageLoader = src => {
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const img = new Image();
+        img.onload = () => setIsLoaded(true);
+        img.src = src;
+        return () => setIsLoaded(false);
+    }, [src]);
+
+    return isLoaded;
+};
