@@ -9,7 +9,7 @@ const defaultSheetExtractor = doc => {
 
 export const createGoogleSheetGetter = ({
     getId,
-    lifetimeSeconds = 120,
+    lifetimeSeconds = 240,
     sheetExtractor = defaultSheetExtractor,
 }) => {
     return preemptiveCache(async () => {
