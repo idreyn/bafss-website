@@ -17,7 +17,7 @@ const TeamMember = props => {
                 />
             </div>
             <div className="name">{name}</div>
-            {detail && <div className="detail">{detail}</div>}
+            {detail && <div className="detail">detail</div>}
         </div>
     );
 };

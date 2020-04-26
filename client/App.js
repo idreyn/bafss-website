@@ -362,7 +362,6 @@ const App = ({ expandMap = false, pageData = {} }) => {
                 </div>
                 <div className="team-container">
                     <h2>The team</h2>
-                    <p>Our team blah blah blah blah</p>
                     <Team teamMembers={team} />
                 </div>
             </main>
