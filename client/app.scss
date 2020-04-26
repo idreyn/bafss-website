@@ -21,7 +21,7 @@ h6 {
 h1 {
     font-size: 2.5em;
     @include mobile {
-        font-size: 1.5em;
+        font-size: 1.75em;
     }
 }
 
@@ -40,6 +40,9 @@ a {
 
 header {
     @include like-main;
+    position: relative;
+    z-index: 4;
+    pointer-events: none;
     .header-and-counter {
         display: flex;
         grid-column: 2 / -1;

@@ -44,7 +44,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
 
     const renderHeader = () => {
         return (
-            <header>
+            <header id="home">
                 <div className="header-and-counter">
                     <h1>Bay Area Face Shield Supply</h1>
                     {renderCountBubble()}
@@ -158,7 +158,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
             <main>
                 <div className="two-column">
                     <div className="left-column" ref={leaderColumnRef}>
-                        <h2>Activity map</h2>
+                        <h2 id="map">Activity map</h2>
                         <div className="map-explainer">
                             This map (click to zoom and interact) shows where:
                             <ul>
@@ -237,7 +237,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 process.
                             </li>
                         </ul>
-                        <h2>FAQ</h2>
+                        <h2 id="faq">FAQ</h2>
                         <p>
                             <strong>
                                 What’s a face shield? Is it like a mask?
@@ -364,12 +364,12 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         </p>
                     </div>
                     <div className="right-column" ref={followerColumnRef}>
-                        <h2>Latest news</h2>
+                        <h2 id="news">Latest news</h2>
                         <EventStream events={pageData && pageData.events} />
                     </div>
                 </div>
                 <div className="team-container">
-                    <h2>The team</h2>
+                    <h2 id="team">The team</h2>
                     <Team teamMembers={team} />
                 </div>
             </main>
