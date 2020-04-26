@@ -9,6 +9,7 @@ import BalanceChart from './charts/BalanceChart';
 import EventStream from './EventStream';
 import Footer from './Footer';
 import Map from './Map';
+import Team from './team/Team';
 
 import './app.scss';
 
@@ -33,7 +34,7 @@ const getDonationCount = donations => {
 };
 
 const App = ({ expandMap = false, pageData = {} }) => {
-    const { responses, donations, chartData } = pageData;
+    const { responses, donations, team, chartData } = pageData;
     const {
         leaderColumnRef,
         followerColumnRef,
@@ -358,6 +359,11 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         <h2>Latest news</h2>
                         <EventStream events={pageData && pageData.events} />
                     </div>
+                </div>
+                <div className="team-container">
+                    <h2>The team</h2>
+                    <p>Our team blah blah blah blah</p>
+                    <Team teamMembers={team} />
                 </div>
             </main>
             <Footer />

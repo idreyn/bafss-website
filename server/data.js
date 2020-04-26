@@ -1,6 +1,7 @@
 import { getResponses } from './responses';
 import { getEvents } from './events';
 import { getBalanceData } from './balance';
+import { getTeam } from './team';
 
 const groupItemsByField = (items, fieldName) => {
     const res = {};
@@ -182,7 +183,8 @@ const getBalanceChartData = balance => {
 };
 
 export const getPageData = async (showPrivateView = false) => {
-    const [responses, { donations, notes }, balance] = await Promise.all([
+    const [team, responses, { donations, notes }, balance] = await Promise.all([
+        getTeam(),
         getResponses(showPrivateView),
         getEvents(),
         getBalanceData(),
@@ -192,6 +194,7 @@ export const getPageData = async (showPrivateView = false) => {
         chartData: {
             balance: getBalanceChartData(balance),
         },
+        team,
         responses: groupItemsByField(responses, 'zip'),
         donations: groupItemsByField(donations, 'locationId'),
         events: createEventsStream(donations, notes),

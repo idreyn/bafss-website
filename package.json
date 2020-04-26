@@ -16,7 +16,7 @@
   "author": "Ian Reynolds",
   "license": "ISC",
   "engines": {
-    "node": "12.x"
+    "node": "13.x"
   },
   "devDependencies": {
     "concurrently": "^5.1.0",

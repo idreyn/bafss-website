@@ -1,0 +1,39 @@
+@import '../shared.scss';
+
+.team-component {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.team-member-component {
+    width: 125px;
+    text-align: center;
+    .headshot-container {
+        box-sizing: border-box;
+        box-shadow: $base-shadow;
+        border: 4px solid $base-accent;
+        width: 125px;
+        height: 125px;
+        border-radius: 125px;
+        overflow: hidden;
+        background: #eee;
+        .headshot {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            opacity: 0;
+            transition: opacity 0.2s;
+            &.loaded {
+                opacity: 1;
+            }
+        }
+    }
+    .name {
+        font-size: 0.8em;
+        margin-top: 5px;
+    }
+    .detail {
+        font-size: 0.6em;
+        color: #666;
+    }
+}
