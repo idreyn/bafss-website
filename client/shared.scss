@@ -1,19 +1,17 @@
 $base-shadow: 0px 3px 5px rgba(0, 0, 0, 0.15);
 $base-accent: #0099d8;
 $secondary-accent: #db3e44;
+$main-width: 860px;
 
 $labor: #388e3c;
 $tools: #0277bd;
 $materials: #ff9800;
 $funding: #e64a19;
 
-@mixin full-bleed {
-    width: 100vw;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    position: relative;
+@mixin like-main {
+    width: $main-width;
+    margin: 0 auto;
+    max-width: 92%;
 }
 
 @mixin reset-button($add-hover-style: false) {
