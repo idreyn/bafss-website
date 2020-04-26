@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider as RKProvider } from 'reakit/Provider';
-import * as boostrapSystem from 'reakit-system-bootstrap';
+import * as bootstrapSystem from 'reakit-system-bootstrap';
 
 import { useColumnEqualizer } from './util';
 import { ResponseMarker } from './ResponseMarker';
@@ -9,6 +9,7 @@ import BalanceChart from './charts/BalanceChart';
 import EventStream from './EventStream';
 import Footer from './Footer';
 import Map from './Map';
+import Nav from './Nav';
 import Team from './team/Team';
 
 import './app.scss';
@@ -90,52 +91,57 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         like N95 respirators.
                     </p>
                 </div>
-                <div className="call-to-action">
-                    <div className="ask">
-                        Want to help print or assemble shields? Can you
-                        contribute a few dollars towards our effort?
+            </div>
+        );
+    };
+
+    const renderCta = () => {
+        return (
+            <div className="call-to-action">
+                <div className="ask">
+                    Want to help print or assemble shields? Can you contribute a
+                    few dollars towards our effort?
+                </div>
+                <div className="cta-links">
+                    <div className="cta">
+                        <a
+                            className="cta-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://bit.ly/bay-area-face-shield-volunteer"
+                        >
+                            Volunteer to help&nbsp;&rsaquo;
+                        </a>
                     </div>
-                    <div className="cta-links">
-                        <div className="cta">
-                            <a
-                                className="cta-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://bit.ly/bay-area-face-shield-volunteer"
-                            >
-                                Volunteer to help&nbsp;&rsaquo;
+                    <div className="cta">
+                        <a
+                            className="cta-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://www.paypal.me/bayareafaceshields"
+                        >
+                            Donate via Paypal&nbsp;&rsaquo;
+                        </a>
+                        <div className="cta-secondary-info">
+                            or Venmo @Santani-Teng
+                            <br />
+                            <a href="#finances">
+                                More on how your money is used
                             </a>
                         </div>
-                        <div className="cta">
-                            <a
-                                className="cta-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://www.paypal.me/bayareafaceshields"
-                            >
-                                Donate via Paypal&nbsp;&rsaquo;
-                            </a>
-                            <div className="cta-secondary-info">
-                                or Venmo @Santani-Teng
-                                <br />
-                                <a href="#finances">
-                                    More on how your money is used
-                                </a>
-                            </div>
-                        </div>
-                        <div className="cta">
-                            <a
-                                className="cta-link"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://bit.ly/bay-area-face-shield-request"
-                            >
-                                Request shields&nbsp;&rsaquo;
-                            </a>
-                            <div className="cta-secondary-info">
-                                for frontline medical workers like doctors,
-                                nurses, and pharmacists
-                            </div>
+                    </div>
+                    <div className="cta">
+                        <a
+                            className="cta-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://bit.ly/bay-area-face-shield-request"
+                        >
+                            Request shields&nbsp;&rsaquo;
+                        </a>
+                        <div className="cta-secondary-info">
+                            for frontline medical workers like doctors, nurses,
+                            and pharmacists
                         </div>
                     </div>
                 </div>
@@ -144,10 +150,12 @@ const App = ({ expandMap = false, pageData = {} }) => {
     };
 
     return (
-        <RKProvider unstable_system={boostrapSystem}>
+        <RKProvider unstable_system={bootstrapSystem}>
+            {renderHeader()}
+            <Nav />
+            {renderHero()}
+            {renderCta()}
             <main>
-                {renderHeader()}
-                {renderHero()}
                 <div className="two-column">
                     <div className="left-column" ref={leaderColumnRef}>
                         <h2>Activity map</h2>

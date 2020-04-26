@@ -1,0 +1,10 @@
+@import './shared.scss';
+
+.nav-component {
+    background: white;
+    position: sticky;
+    display: flex;
+    nav {
+        @include like-main;
+    }
+}
