@@ -362,6 +362,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                 </div>
                 <div className="team-container">
                     <h2>The team</h2>
+                    <p>BAFSS comprises dozens of people who have agreed to help in big or small ways, from chipping in funds to offering the occasional delivery drive to organizing large bulk purchases to running their 3d printer day after day. Here is a non-exhaustive sampling of our team!</p>
                     <Team teamMembers={team} />
                 </div>
             </main>
