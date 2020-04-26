@@ -5,6 +5,7 @@ $vertical-spacing: 7px;
 .event-stream-component {
     padding-left: 5px;
     padding-right: 5px;
+    overflow-x: hidden;
     .event-stream-date {
         .date-header {
             font-size: 0.7em;
