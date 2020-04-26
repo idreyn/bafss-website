@@ -334,7 +334,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             volunteering time and resources in this group
                             effort: 3D-printing visors, cutting and shaping
                             plastic sheets, assembling components, making
-                            deliveries, and fueling the process with donations.
+                            deliveries, and fueling the process with donations. See below to see some of our team!
                         </p>
                         <p>
                             <strong>
