@@ -16,12 +16,14 @@ const Nav = () => {
         <div className="nav-component">
             <nav>
                 <a href="#home">Home</a>
+                <a href="#map">Map</a>
                 <a id="finances-link" href="#finances">
                     Finances
                 </a>
-                <a href="#map">Map</a>
                 <a href="#faq">FAQ</a>
-                <a id="news-link" href="#news">News</a>
+                <a id="news-link" href="#news">
+                    News
+                </a>
                 <a href="#team">Team</a>
             </nav>
         </div>
