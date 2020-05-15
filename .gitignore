@@ -1,5 +1,4 @@
 node_modules
 .vscode
 dist/
-static/testData
 server/secrets.js

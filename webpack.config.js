@@ -41,6 +41,10 @@ module.exports = {
                 from: path.resolve(__dirname, 'static/images'),
                 to: 'images',
             },
+            {
+                from: path.resolve(__dirname, 'static/assets'),
+                to: 'assets',
+            },
         ]),
     ],
 };

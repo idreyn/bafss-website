@@ -10,10 +10,7 @@ require('@babel/register')({
         '@babel/preset-react',
     ],
     plugins: [
-        [
-            'babel-plugin-transform-require-ignore',
-            { extensions: ['.scss', '.png'] },
-        ],
+        ['babel-plugin-transform-require-ignore', { extensions: ['.scss'] }],
     ],
 });
 
