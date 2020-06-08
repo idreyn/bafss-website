@@ -118,11 +118,13 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             className="cta-link"
                             target="_blank"
                             rel="noopener noreferrer"
-                            href="https://www.gofundme.com/create/campaign-is-ready/bay-area-face-shield-supply"
+                            href="https://www.paypal.me/bayareafaceshields"
                         >
-                            Donate via GoFundMe&nbsp;&rsaquo;
+                            Donate via Paypal&nbsp;&rsaquo;
                         </a>
                         <div className="cta-secondary-info">
+                            or Venmo @Santani-Teng
+                            <br />
                             <a href="#finances">
                                 More on how your money is used
                             </a>
