@@ -120,7 +120,7 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             rel="noopener noreferrer"
                             href="https://gf.me/u/x7yv4c"
                         >
-                            Donate via our GoFundMe page&nbsp;&rsaquo;
+                            Donate via GoFundMe&nbsp;&rsaquo;
                         </a>
                         <div className="cta-secondary-info">
                             <a href="#finances">
