@@ -18,7 +18,7 @@ export const HtmlWrapper = ({ children, appProps, manifest }) => {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
-                <title>SFBA Face Shield Supply</title>
+                <title>Bay Area Face Shield Supply</title>
             </head>
             <body>
                 <div id="root">{children}</div>
