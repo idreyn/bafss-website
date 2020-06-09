@@ -2,3 +2,4 @@ node_modules
 .vscode
 dist/
 server/secrets.js
+.DS_Store
