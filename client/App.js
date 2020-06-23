@@ -122,6 +122,24 @@ const App = ({ expandMap = false, pageData = {} }) => {
                         >
                             Donate via GoFundMe&nbsp;&rsaquo;
                         </a>
+                        <br></br>
+                        <a
+                            className="cta-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://www.seashantiesgame.com/"
+                        >
+                            Donate by buying Sea Shanties&nbsp;&rsaquo;
+                        </a>
+                        <br></br>
+                        <a
+                            className="cta-link"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://amyetart.squarespace.com/"
+                        >
+                            Donate by commissioning a painting&nbsp;&rsaquo;
+                        </a>
                         <div className="cta-secondary-info">
                             <a href="#finances">
                                 More on how your money is used
@@ -138,8 +156,8 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             Request shields&nbsp;&rsaquo;
                         </a>
                         <div className="cta-secondary-info">
-                            for frontline medical workers like doctors, nurses,
-                            and pharmacists
+                            we prioritize health workers like doctors, nurses, dentists
+                            and pharmacists but will do our best to accommodate everyone
                         </div>
                     </div>
                 </div>
@@ -236,10 +254,10 @@ const App = ({ expandMap = false, pageData = {} }) => {
                             </li>
                         </ul>
                         <p>
-                            <strong>Ways to stretch your dollar</strong>
-                            <br></br>- For the remainder of June, every dollar donated to BAFSS, whether directly or through one of the partnerships below, will be personally matched by our founder/main organizer with a dollar donated to the <a href="https://nlgsf.org">National Lawyers Guild, SF Bay Area chapter</a>. Your donation will go entirely to BAFSS, but will trigger a matching donation to legal aid for people caught up in recent protests.
-                            <br></br>- For the remainder of June, Andrew Hunter (indie game developer and founder of Pleiades Games) is donating all profits from sales of Sea Shanties: A Pirate-Centric Board Game to BAFSS!
-                            <br></br>- For the remainder of June, local artist Amy Teng is donating commissions for paintings to BAFSS. Memorialize a unique moment in your life and help a good cause!
+                            <strong>Ways to stretch your dollar in June 2020</strong>
+                            <br></br>Every dollar donated to BAFSS, whether directly or through one of the partnerships below, will be <a href="https://www.facebook.com/santani.teng/posts/10157344311802078">personally matched by our founder/main organizer</a> with a dollar donated to the <a href="https://nlgsf.org">National Lawyers Guild, SF Bay Area chapter</a>. (To be clear, your own donation will go entirely to BAFSS!)
+                            <br></br>Indie game developer <a href="http://pleiades.games/">Pleiades Games</a> is donating all profits from sales of <a href="https://www.seashantiesgame.com/">Sea Shanties: A Pirate-Centric Board Game</a> to BAFSS!
+                            <br></br><a href="https://amyetart.squarespace.com/">Local artist Amy Teng</a> is donating commissions for paintings to BAFSS. Memorialize a unique moment in your life and help a good cause!
                         </p>
                 
                         <h2 id="faq">FAQ</h2>
