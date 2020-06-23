@@ -235,6 +235,13 @@ const App = ({ expandMap = false, pageData = {} }) => {
                                 process.
                             </li>
                         </ul>
+                        <p>
+                            <strong>Ways to stretch your dollar</strong>
+                            <br></br>- For the remainder of June, every dollar donated to BAFSS, whether directly or through one of the partnerships below, will be personally matched by our founder/main organizer with a dollar donated to the <a href="https://nlgsf.org">National Lawyers Guild, SF Bay Area chapter</a>. Your donation will go entirely to BAFSS, but will trigger a matching donation to legal aid for people caught up in recent protests.
+                            <br></br>- For the remainder of June, Andrew Hunter (indie game developer and founder of Pleiades Games) is donating all profits from sales of Sea Shanties: A Pirate-Centric Board Game to BAFSS!
+                            <br></br>- For the remainder of June, local artist Amy Teng is donating commissions for paintings to BAFSS. Memorialize a unique moment in your life and help a good cause!
+                        </p>
+                
                         <h2 id="faq">FAQ</h2>
                         <p>
                             <strong>
