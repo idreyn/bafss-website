@@ -45,7 +45,7 @@
     "css-loader": "^3.4.2",
     "csv-parse": "^4.8.8",
     "esm": "^3.2.25",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-force-https": "^1.0.0",
     "file-loader": "^6.0.0",
     "google-spreadsheet": "^3.0.10",
